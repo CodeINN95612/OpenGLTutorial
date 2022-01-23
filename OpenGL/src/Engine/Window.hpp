@@ -1,6 +1,9 @@
 #pragma once
 
+#include "Renderizador.hpp"
+
 #include <cstdint>
+#include <memory>
 
 namespace GL
 {
@@ -17,9 +20,13 @@ namespace GL
 		inline void Cerrar() { m_Corriendo = false; }
 
 		void RecibirEventos();
+		void Cambiar();
+
+		std::unique_ptr<Renderizador> CrearRenderizador();
 
 	private:
 		void* m_WindowHandle = nullptr;
+		void* m_OpenGLContext = nullptr;
 		bool m_Corriendo = true;
 	};
 }

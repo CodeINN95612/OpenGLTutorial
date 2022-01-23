@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Window.h"
+#include "Window.hpp"
 
 #include <memory>
 
@@ -22,6 +22,7 @@ public:
 
 private:
 	std::unique_ptr<GL::Window> m_Window{};
+	std::unique_ptr<GL::Renderizador> m_Renderizador{};
 
 private:
 	void ManejarEntradaDeUsuario();
