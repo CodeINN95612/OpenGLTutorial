@@ -53,6 +53,7 @@ Game::Game()
 
 void Game::Run()
 {
+
 	m_Renderizador->Viewport(0, 0, Ancho, Alto);
 
 	while (m_Window->Corriendo())

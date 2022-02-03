@@ -12,7 +12,7 @@ public:
 	inline static constexpr const uint32_t Alto = 600;
 
 public:
-	Game() = default;
+	Game();
 	virtual ~Game() = default;
 
 	Game(const Game& other) = delete;
@@ -23,6 +23,8 @@ public:
 private:
 	std::unique_ptr<GL::Window> m_Window{};
 	std::unique_ptr<GL::Renderizador> m_Renderizador{};
+
+	uint32_t m_ObjetoProgramaShader;
 
 private:
 	void ManejarEntradaDeUsuario();
