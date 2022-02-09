@@ -13,7 +13,7 @@ public:
 
 public:
 	Game();
-	virtual ~Game() = default;
+	virtual ~Game();
 
 	Game(const Game& other) = delete;
 	Game& operator==(const Game& other) = delete;
@@ -25,9 +25,17 @@ private:
 	std::unique_ptr<GL::Renderizador> m_Renderizador{};
 
 	uint32_t m_ObjetoProgramaShader;
+	uint32_t m_ObjetoVertexShader;
+	uint32_t m_ObjetoFragmentShader;
+
+	uint32_t m_ObjetoVertexBuffer;
+	uint32_t m_ObjetoVertexArray;
 
 private:
 	void ManejarEntradaDeUsuario();
 	void Actualizar();
 	void Renderizar();
+
+	void CrearShader();
+	void LimpiarShader();
 };

@@ -41,7 +41,7 @@ void ManejadorDeErrores(GLenum src, GLenum type, GLuint id, GLenum severity, GLs
 	std::string tipo = TipoComoString(type);
 	std::string severidad = SeveridadComoString(severity);
 
-	printf("Severidad: %s; Fuente: %s; Tipo: %s; Mensaje: %s", severidad.c_str(), fuente.c_str(), tipo.c_str(), msg);
+	printf("Severidad: %s; Fuente: %s; Tipo: %s; Mensaje: %s\n", severidad.c_str(), fuente.c_str(), tipo.c_str(), msg);
 
 	assert(severity != GL_DEBUG_SEVERITY_HIGH && "Error critico Encontrado");
 	assert(severity != GL_DEBUG_SEVERITY_MEDIUM && "Error de alto nivel Encontrado");
