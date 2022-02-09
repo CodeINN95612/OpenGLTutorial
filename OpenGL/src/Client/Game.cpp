@@ -12,9 +12,9 @@ Game::Game()
 	CrearShader();
 
 	float vertices[] = {
-		 0.0f,  0.5f,
-		-0.5f, -0.5f,
-		 0.5f, -0.5f
+		 0.0f,  0.5f, 1.0f, 0.0f, 0.0f,
+		-0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+		 0.5f, -0.5f, 0.0f, 0.0f, 1.0f
 	};
 
 	glCreateBuffers(1, &m_ObjetoVertexBuffer);
@@ -23,13 +23,16 @@ Game::Game()
 	//Crear Vertex Arrays
 	glCreateVertexArrays(1, &m_ObjetoVertexArray);
 
-	glVertexArrayVertexBuffer(m_ObjetoVertexArray, 0, m_ObjetoVertexBuffer, 0, 2 * sizeof(float));
+	glVertexArrayVertexBuffer(m_ObjetoVertexArray, 0, m_ObjetoVertexBuffer, 0, 5 * sizeof(float));
 
 	glEnableVertexArrayAttrib(m_ObjetoVertexArray, 0);
+	glEnableVertexArrayAttrib(m_ObjetoVertexArray, 1);
 
-	glVertexArrayAttribFormat(m_ObjetoVertexArray, 0, 2, GL_FLOAT, GL_FALSE, 0);
+	glVertexArrayAttribFormat(m_ObjetoVertexArray, 0, 2, GL_FLOAT, GL_FALSE, 0 * sizeof(float));
+	glVertexArrayAttribFormat(m_ObjetoVertexArray, 1, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(float));
 	
 	glVertexArrayAttribBinding(m_ObjetoVertexArray, 0, 0);
+	glVertexArrayAttribBinding(m_ObjetoVertexArray, 1, 0);
 	
 }
 
@@ -94,15 +97,19 @@ void Game::CrearShader()
 	const char* vertexShader =
 		"#version 450 core\n"
 		"layout (location = 0) in vec2 vPosition;\n"
+		"layout (location = 1) in vec3 vColor;\n"
+		"out vec3 iColor;\n"
 		"void main(){\n"
 		"	gl_Position = vec4(vPosition, 1.0f, 1.0f);\n"
+		"	iColor = vColor;\n"
 		"}\n\0";
 
 	const char* fragmentShader =
 		"#version 450 core\n"
+		"in vec3 iColor;\n"
 		"out vec4 fColor;\n"
 		"void main(){\n"
-		"	fColor = vec4(1.0f, 1.0f, 1.0f, 1.0f);\n"
+		"	fColor = vec4(iColor, 1.0f);\n"
 		"}\n\0";
 
 	//Crear Objetos Shader de OpenGL
