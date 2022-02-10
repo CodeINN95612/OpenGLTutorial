@@ -12,18 +12,29 @@ Game::Game()
 	CrearShader();
 
 	float vertices[] = {
-		 0.0f,  0.5f, 1.0f, 0.0f, 0.0f,
+		-0.5f,  0.5f, 1.0f, 0.0f, 0.0f,
 		-0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
-		 0.5f, -0.5f, 0.0f, 0.0f, 1.0f
+		 0.5f, -0.5f, 0.0f, 0.0f, 1.0f,
+
+		 0.5f,  0.5f, 1.0f, 1.0f, 1.0f,
+	};
+
+	uint8_t indices[] = {
+		0, 1, 2, 
+		0, 2, 3
 	};
 
 	glCreateBuffers(1, &m_ObjetoVertexBuffer);
+	glCreateBuffers(1, &m_ObjetoIndexBuffer);
+
 	glNamedBufferStorage(m_ObjetoVertexBuffer, sizeof(vertices), vertices, GL_MAP_WRITE_BIT /* GL_DYNAMIC_STORAGE_BIT*/);
+	glNamedBufferStorage(m_ObjetoIndexBuffer, sizeof(indices), indices, GL_MAP_WRITE_BIT /* GL_DYNAMIC_STORAGE_BIT*/);
 
 	//Crear Vertex Arrays
 	glCreateVertexArrays(1, &m_ObjetoVertexArray);
 
 	glVertexArrayVertexBuffer(m_ObjetoVertexArray, 0, m_ObjetoVertexBuffer, 0, 5 * sizeof(float));
+	glVertexArrayElementBuffer(m_ObjetoVertexArray, m_ObjetoIndexBuffer);
 
 	glEnableVertexArrayAttrib(m_ObjetoVertexArray, 0);
 	glEnableVertexArrayAttrib(m_ObjetoVertexArray, 1);
@@ -47,6 +58,8 @@ Game::~Game()
 void Game::Run()
 {
 	m_Renderizador->Viewport(0, 0, Ancho, Alto);
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	while (m_Window->Corriendo())
 	{
@@ -73,23 +86,15 @@ void Game::Actualizar()
 
 void Game::Renderizar()
 {
-	static float an = 0.0f;
-
-	float r = glm::sin(glm::radians(an)) * 0.5f + 0.5f;
-	float g = glm::sin(2 * glm::radians(an)) * 0.5f + 0.5f;
-	float b = glm::cos(glm::radians(an)) * 0.5f + 0.5f;
-
-	m_Renderizador->LimpiarPantalla(glm::vec4( r, g, b, 1.0f ));
+	m_Renderizador->LimpiarPantalla(glm::vec4( 0.1f, 0.1f, 0.1f, 1.0f ));
 
 	//////////////////////
 	glUseProgram(m_ObjetoProgramaShader);
 	glBindVertexArray(m_ObjetoVertexArray);
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, nullptr);
 	////////////////////
 
 	m_Window->Cambiar();
-
-	an += 180.0f / 360.0f;
 }
 
 void Game::CrearShader()

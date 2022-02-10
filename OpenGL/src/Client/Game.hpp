@@ -29,6 +29,7 @@ private:
 	uint32_t m_ObjetoFragmentShader;
 
 	uint32_t m_ObjetoVertexBuffer;
+	uint32_t m_ObjetoIndexBuffer; //Element Buffer
 	uint32_t m_ObjetoVertexArray;
 
 private:
