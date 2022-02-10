@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Renderizador.hpp"
+#include "Renderizador/Renderizador.hpp"
 
 #include <cstdint>
 #include <memory>

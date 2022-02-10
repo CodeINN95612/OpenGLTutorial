@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Window.hpp"
+#include "Renderizador/VertexArray.hpp"
 
 #include <memory>
 
@@ -28,9 +29,7 @@ private:
 	uint32_t m_ObjetoVertexShader;
 	uint32_t m_ObjetoFragmentShader;
 
-	uint32_t m_ObjetoVertexBuffer;
-	uint32_t m_ObjetoIndexBuffer; //Element Buffer
-	uint32_t m_ObjetoVertexArray;
+	std::unique_ptr<GL::VertexArray> m_VertexArray;
 
 private:
 	void ManejarEntradaDeUsuario();

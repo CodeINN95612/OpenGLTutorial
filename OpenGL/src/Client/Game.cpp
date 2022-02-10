@@ -4,6 +4,7 @@
 
 #include <glad/glad.h>
 
+
 Game::Game()
 {
 	m_Window = std::make_unique<GL::Window>(Nombre, Ancho, Alto);
@@ -24,34 +25,21 @@ Game::Game()
 		0, 2, 3
 	};
 
-	glCreateBuffers(1, &m_ObjetoVertexBuffer);
-	glCreateBuffers(1, &m_ObjetoIndexBuffer);
+	GL::VertexArray::Atributo atributos[] =
+	{
+		{0, GL::VertexArray::TipoAtributo::Float2},
+		{1, GL::VertexArray::TipoAtributo::Float3},
+	};
 
-	glNamedBufferStorage(m_ObjetoVertexBuffer, sizeof(vertices), vertices, GL_MAP_WRITE_BIT /* GL_DYNAMIC_STORAGE_BIT*/);
-	glNamedBufferStorage(m_ObjetoIndexBuffer, sizeof(indices), indices, GL_MAP_WRITE_BIT /* GL_DYNAMIC_STORAGE_BIT*/);
+	std::shared_ptr<GL::VertexBuffer> vertexBuffer = std::make_shared<GL::VertexBuffer>(sizeof(vertices) / sizeof(vertices[0]), vertices);
+	std::shared_ptr<GL::IndexBuffer> indexBuffer = std::make_shared<GL::IndexBuffer>(sizeof(indices) / sizeof(indices[0]), indices);
 
-	//Crear Vertex Arrays
-	glCreateVertexArrays(1, &m_ObjetoVertexArray);
-
-	glVertexArrayVertexBuffer(m_ObjetoVertexArray, 0, m_ObjetoVertexBuffer, 0, 5 * sizeof(float));
-	glVertexArrayElementBuffer(m_ObjetoVertexArray, m_ObjetoIndexBuffer);
-
-	glEnableVertexArrayAttrib(m_ObjetoVertexArray, 0);
-	glEnableVertexArrayAttrib(m_ObjetoVertexArray, 1);
-
-	glVertexArrayAttribFormat(m_ObjetoVertexArray, 0, 2, GL_FLOAT, GL_FALSE, 0 * sizeof(float));
-	glVertexArrayAttribFormat(m_ObjetoVertexArray, 1, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(float));
-	
-	glVertexArrayAttribBinding(m_ObjetoVertexArray, 0, 0);
-	glVertexArrayAttribBinding(m_ObjetoVertexArray, 1, 0);
-	
+	m_VertexArray = std::make_unique<GL::VertexArray>(atributos, sizeof(atributos) / sizeof(atributos[0]));
+	m_VertexArray->SetDataBuffer(vertexBuffer, indexBuffer);
 }
 
 Game::~Game()
 {
-	glDeleteVertexArrays(1, &m_ObjetoVertexArray);
-	glDeleteBuffers(1, &m_ObjetoVertexBuffer);
-
 	LimpiarShader();
 }
 
@@ -59,7 +47,7 @@ void Game::Run()
 {
 	m_Renderizador->Viewport(0, 0, Ancho, Alto);
 
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	while (m_Window->Corriendo())
 	{
@@ -90,8 +78,8 @@ void Game::Renderizar()
 
 	//////////////////////
 	glUseProgram(m_ObjetoProgramaShader);
-	glBindVertexArray(m_ObjetoVertexArray);
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, nullptr);
+	m_VertexArray->Bind();
+	glDrawElements(GL_TRIANGLES, m_VertexArray->GetDrawCount(), GL_UNSIGNED_BYTE, nullptr);
 	////////////////////
 
 	m_Window->Cambiar();
