@@ -2,6 +2,7 @@
 
 #include "Window.hpp"
 #include "Renderizador/VertexArray.hpp"
+#include "Renderizador/Shader.hpp"
 
 #include <memory>
 
@@ -25,17 +26,11 @@ private:
 	std::unique_ptr<GL::Window> m_Window{};
 	std::unique_ptr<GL::Renderizador> m_Renderizador{};
 
-	uint32_t m_ObjetoProgramaShader;
-	uint32_t m_ObjetoVertexShader;
-	uint32_t m_ObjetoFragmentShader;
-
 	std::unique_ptr<GL::VertexArray> m_VertexArray;
+	std::shared_ptr<GL::Shader> m_Shader;
 
 private:
 	void ManejarEntradaDeUsuario();
 	void Actualizar();
 	void Renderizar();
-
-	void CrearShader();
-	void LimpiarShader();
 };
