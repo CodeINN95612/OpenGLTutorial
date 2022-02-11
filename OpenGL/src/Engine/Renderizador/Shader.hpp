@@ -3,6 +3,8 @@
 #include <cstdint>
 #include <memory>
 
+#include <glm/glm.hpp>
+
 namespace GL
 {
 	class Shader
@@ -18,10 +20,15 @@ namespace GL
 
 		void Bind();
 
+		void Uniform4f(const char* nombre, const glm::vec4& valores);
+
 	private:
 		uint32_t m_VertexShader;
 		uint32_t m_FragmentShader;
 		uint32_t m_Programa;
+
+	private:
+		int32_t GetUniformLocation(const char* nombre);
 
 	};
 }

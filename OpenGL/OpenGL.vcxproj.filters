@@ -24,7 +24,7 @@
     <ClCompile Include="src\Client\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ext\glad.c">
+    <ClCompile Include="ext\glad\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\Renderizador\Renderizador.cpp">

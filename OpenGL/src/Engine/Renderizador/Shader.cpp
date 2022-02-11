@@ -24,6 +24,7 @@ namespace GL
 		glAttachShader(m_Programa, m_FragmentShader);
 
 		glLinkProgram(m_Programa);
+		Bind();
 	}
 
 	Shader::~Shader()
@@ -52,5 +53,19 @@ namespace GL
 	void Shader::Bind()
 	{
 		glUseProgram(m_Programa);
+	}
+
+	void Shader::Uniform4f(const char* nombre, const glm::vec4& valores)
+	{
+		int32_t location = GetUniformLocation(nombre);
+		glUniform4f(location, valores.r, valores.g, valores.b, valores.a);
+	}
+
+	int32_t Shader::GetUniformLocation(const char* nombre)
+	{
+		Bind();
+		int32_t location = glGetUniformLocation(m_Programa, nombre);
+		assert(location > -1 && "No fue posible encontrar el Uniform");
+		return location;
 	}
 }

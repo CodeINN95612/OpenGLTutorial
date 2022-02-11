@@ -13,13 +13,14 @@ Game::Game()
 	m_Renderizador = m_Window->CrearRenderizador();
 
 	m_Shader = GL::Shader::DesdeArchivo("./assets/shaders/Basic.vert", "./assets/shaders/Basic.frag");
+	m_Shader->Uniform4f("uColor", { 0.0f, 1.0f, 1.0f, 1.0f });
 
 	float vertices[] = {
-		-0.5f,  0.5f, 1.0f, 0.0f, 0.0f,
-		-0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
-		 0.5f, -0.5f, 0.0f, 0.0f, 1.0f,
+		-0.5f,  0.5f,
+		-0.5f, -0.5f,
+		 0.5f, -0.5f,
 
-		 0.5f,  0.5f, 1.0f, 1.0f, 1.0f,
+		 0.5f,  0.5f,
 	};
 
 	uint8_t indices[] = {
@@ -29,8 +30,7 @@ Game::Game()
 
 	GL::VertexArray::Atributo atributos[] =
 	{
-		{0, GL::VertexArray::TipoAtributo::Float2},
-		{1, GL::VertexArray::TipoAtributo::Float3},
+		{0, GL::VertexArray::TipoAtributo::Float2}
 	};
 
 	std::shared_ptr<GL::VertexBuffer> vertexBuffer = std::make_shared<GL::VertexBuffer>(sizeof(vertices) / sizeof(vertices[0]), vertices);

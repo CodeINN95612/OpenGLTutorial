@@ -90,7 +90,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ext\glad.c" />
+    <ClCompile Include="ext\glad\glad.c" />
     <ClCompile Include="src\Client\Game.cpp" />
     <ClCompile Include="src\Client\main.cpp" />
     <ClCompile Include="src\Engine\Renderizador\IndexBuffer.cpp" />
