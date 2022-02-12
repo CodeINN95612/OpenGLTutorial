@@ -91,8 +91,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ext\glad\glad.c" />
+    <ClCompile Include="src\Engine\Libs\stb_image\stb_image.cpp" />
     <ClCompile Include="src\Client\Game.cpp" />
     <ClCompile Include="src\Client\main.cpp" />
+    <ClCompile Include="src\Engine\Renderizador\Imagen.cpp" />
     <ClCompile Include="src\Engine\Renderizador\IndexBuffer.cpp" />
     <ClCompile Include="src\Engine\Renderizador\Renderizador.cpp" />
     <ClCompile Include="src\Engine\Renderizador\Shader.cpp" />
@@ -102,7 +104,12 @@
     <ClCompile Include="src\Engine\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Engine\Libs\stb_image\stb_image.h" />
     <ClInclude Include="src\Client\Game.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Renderizador\Imagen.hpp">
       <SubType>
       </SubType>
     </ClInclude>

@@ -5,6 +5,7 @@
 #include <glad/glad.h>
 
 #include "Utils/Archivo.hpp"
+#include "Renderizador/Imagen.hpp"
 
 
 Game::Game()
@@ -14,6 +15,8 @@ Game::Game()
 
 	m_Shader = GL::Shader::DesdeArchivo("./assets/shaders/Basic.vert", "./assets/shaders/Basic.frag");
 	m_Shader->Uniform4f("uColor", { 0.0f, 1.0f, 1.0f, 1.0f });
+
+	std::shared_ptr<GL::Imagen> imgtmp = GL::Imagen::DesdeArchivo("./assets/img/peloNaranja16x16.png");
 
 	float vertices[] = {
 		-0.5f,  0.5f,
