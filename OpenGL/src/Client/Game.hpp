@@ -3,6 +3,7 @@
 #include "Window.hpp"
 #include "Renderizador/VertexArray.hpp"
 #include "Renderizador/Shader.hpp"
+#include "Renderizador/Textura.hpp"
 
 #include <memory>
 
@@ -26,8 +27,9 @@ private:
 	std::unique_ptr<GL::Window> m_Window{};
 	std::unique_ptr<GL::Renderizador> m_Renderizador{};
 
-	std::unique_ptr<GL::VertexArray> m_VertexArray;
+	std::shared_ptr<GL::Textura> m_Textura;
 	std::shared_ptr<GL::Shader> m_Shader;
+	std::unique_ptr<GL::VertexArray> m_VertexArray;
 
 private:
 	void ManejarEntradaDeUsuario();

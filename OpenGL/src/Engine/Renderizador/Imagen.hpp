@@ -7,6 +7,7 @@ namespace GL
 {
 	class Imagen
 	{
+	public:
 		enum class Canal : uint8_t
 		{
 			R = 1,

@@ -21,6 +21,7 @@ namespace GL
 		void Bind();
 
 		void Uniform4f(const char* nombre, const glm::vec4& valores);
+		void UniformTextura(const char* nombre, int val);
 
 	private:
 		uint32_t m_VertexShader;

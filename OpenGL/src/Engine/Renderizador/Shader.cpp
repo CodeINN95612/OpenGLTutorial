@@ -61,6 +61,12 @@ namespace GL
 		glUniform4f(location, valores.r, valores.g, valores.b, valores.a);
 	}
 
+	void Shader::UniformTextura(const char* nombre, int val)
+	{
+		int32_t location = GetUniformLocation(nombre);
+		glUniform1i(location, val);
+	}
+
 	int32_t Shader::GetUniformLocation(const char* nombre)
 	{
 		Bind();

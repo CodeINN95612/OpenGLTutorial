@@ -98,6 +98,7 @@
     <ClCompile Include="src\Engine\Renderizador\IndexBuffer.cpp" />
     <ClCompile Include="src\Engine\Renderizador\Renderizador.cpp" />
     <ClCompile Include="src\Engine\Renderizador\Shader.cpp" />
+    <ClCompile Include="src\Engine\Renderizador\Textura.cpp" />
     <ClCompile Include="src\Engine\Renderizador\VertexArray.cpp" />
     <ClCompile Include="src\Engine\Renderizador\VertexBuffer.cpp" />
     <ClCompile Include="src\Engine\Utils\Archivo.cpp" />
@@ -118,6 +119,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="src\Engine\Renderizador\Shader.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Renderizador\Textura.hpp">
       <SubType>
       </SubType>
     </ClInclude>

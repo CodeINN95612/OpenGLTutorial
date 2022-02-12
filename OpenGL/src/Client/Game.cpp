@@ -5,7 +5,6 @@
 #include <glad/glad.h>
 
 #include "Utils/Archivo.hpp"
-#include "Renderizador/Imagen.hpp"
 
 
 Game::Game()
@@ -13,17 +12,17 @@ Game::Game()
 	m_Window = std::make_unique<GL::Window>(Nombre, Ancho, Alto);
 	m_Renderizador = m_Window->CrearRenderizador();
 
+	m_Textura = GL::Textura::DesdeArchivo("./assets/img/peloNaranja16x16.png");
+
 	m_Shader = GL::Shader::DesdeArchivo("./assets/shaders/Basic.vert", "./assets/shaders/Basic.frag");
 	m_Shader->Uniform4f("uColor", { 0.0f, 1.0f, 1.0f, 1.0f });
-
-	std::shared_ptr<GL::Imagen> imgtmp = GL::Imagen::DesdeArchivo("./assets/img/peloNaranja16x16.png");
+	m_Shader->UniformTextura("uTextura", 0);
 
 	float vertices[] = {
-		-0.5f,  0.5f,
-		-0.5f, -0.5f,
-		 0.5f, -0.5f,
-
-		 0.5f,  0.5f,
+		-0.5f,  0.5f, 0.0f, 1.0f,
+		-0.5f, -0.5f, 0.0f, 0.0f,
+		 0.5f, -0.5f, 1.0f, 0.0f,
+		 0.5f,  0.5f, 1.0f, 1.0f,
 	};
 
 	uint8_t indices[] = {
@@ -33,7 +32,8 @@ Game::Game()
 
 	GL::VertexArray::Atributo atributos[] =
 	{
-		{0, GL::VertexArray::TipoAtributo::Float2}
+		{0, GL::VertexArray::TipoAtributo::Float2},
+		{1, GL::VertexArray::TipoAtributo::Float2},
 	};
 
 	std::shared_ptr<GL::VertexBuffer> vertexBuffer = std::make_shared<GL::VertexBuffer>(sizeof(vertices) / sizeof(vertices[0]), vertices);
@@ -81,6 +81,7 @@ void Game::Renderizar()
 	m_Renderizador->LimpiarPantalla(glm::vec4( 0.1f, 0.1f, 0.1f, 1.0f ));
 
 	//////////////////////
+	m_Textura->Bind(0);
 	m_Shader->Bind();
 	m_VertexArray->Bind();
 	glDrawElements(GL_TRIANGLES, m_VertexArray->GetDrawCount(), GL_UNSIGNED_BYTE, nullptr);
