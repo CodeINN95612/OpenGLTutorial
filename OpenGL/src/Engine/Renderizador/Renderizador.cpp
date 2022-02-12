@@ -21,6 +21,9 @@ namespace GL
 		glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
 		glDebugMessageCallback(ManejadorDeErrores, nullptr);
 		//glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_NOTIFICATION, 0, nullptr, GL_FALSE);
+
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glEnable(GL_BLEND);
 	}
 
 	void Renderizador::Viewport(uint32_t x, uint32_t y, uint32_t ancho, uint32_t alto)

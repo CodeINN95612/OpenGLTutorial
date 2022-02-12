@@ -28,6 +28,7 @@ private:
 	std::unique_ptr<GL::Renderizador> m_Renderizador{};
 
 	std::shared_ptr<GL::Textura> m_Textura;
+	std::shared_ptr<GL::Textura> m_TexturaVentana;
 	std::shared_ptr<GL::Shader> m_Shader;
 	std::unique_ptr<GL::VertexArray> m_VertexArray;
 

@@ -13,9 +13,9 @@ Game::Game()
 	m_Renderizador = m_Window->CrearRenderizador();
 
 	m_Textura = GL::Textura::DesdeArchivo("./assets/img/peloNaranja16x16.png");
+	m_TexturaVentana = GL::Textura::DesdeArchivo("./assets/img/ventana16x16.png");
 
 	m_Shader = GL::Shader::DesdeArchivo("./assets/shaders/Basic.vert", "./assets/shaders/Basic.frag");
-	m_Shader->Uniform4f("uColor", { 0.0f, 1.0f, 1.0f, 1.0f });
 	m_Shader->UniformTextura("uTextura", 0);
 
 	float vertices[] = {
@@ -84,6 +84,9 @@ void Game::Renderizar()
 	m_Textura->Bind(0);
 	m_Shader->Bind();
 	m_VertexArray->Bind();
+	glDrawElements(GL_TRIANGLES, m_VertexArray->GetDrawCount(), GL_UNSIGNED_BYTE, nullptr);
+
+	m_TexturaVentana->Bind(0);
 	glDrawElements(GL_TRIANGLES, m_VertexArray->GetDrawCount(), GL_UNSIGNED_BYTE, nullptr);
 	////////////////////
 
