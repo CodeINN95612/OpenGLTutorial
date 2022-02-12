@@ -7,6 +7,23 @@
 #include "Utils/Archivo.hpp"
 
 
+/*TODO:
+
+1. Manejador de Eventos
+2. Logeo => Mensajes a la consola
+3. Manejar Errores
+4. Interfaz Grafica (50%)
+5. Solucionar Problemas, Errores, Bugs (Archivo, Estructura, Warnings de compilacion, Renderizador funciones)
+
+-----------------------------------------------------
+Objetos de Juego (GameObjetcs)
+Escenas
+Sistemas
+etc....
+
+*/
+
+
 Game::Game()
 {
 	m_Window = std::make_unique<GL::Window>(Nombre, Ancho, Alto);
