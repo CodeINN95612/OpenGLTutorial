@@ -14,6 +14,8 @@ void ManejadorEventosJuego::EventoPantallaMover(int32_t x, int32_t y) const
 
 void ManejadorEventosJuego::EventoPantallaCambiarDimension(int32_t ancho, int32_t alto) const
 {
+	if(ancho != 0 && alto != 0)
+		m_Juego.m_Renderizador->Viewport(0, 0, ancho, alto);
 }
 
 void ManejadorEventosJuego::EventoMouseMover(int32_t x, int32_t y) const

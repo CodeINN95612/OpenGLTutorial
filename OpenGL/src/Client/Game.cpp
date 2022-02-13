@@ -10,7 +10,8 @@
 /*TODO:
 
 -----1.1. Manejador de Eventos 
-1.2. Manejador de Eventos
+-----1.2. Manejador de Eventos
+-----1.3 Probar
 2. Logeo => Mensajes a la consola
 3. Manejar Errores
 4. Interfaz Grafica (50%)
