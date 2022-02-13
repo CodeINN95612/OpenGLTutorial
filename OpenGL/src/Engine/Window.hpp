@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Renderizador/Renderizador.hpp"
+#include "Eventos/IManejadorDeEventos.hpp"
+
+#include "Plataforma/MouseBotones.hpp"
 
 #include <cstdint>
 #include <memory>
@@ -19,7 +22,7 @@ namespace GL
 		inline bool Corriendo() const { return m_Corriendo; }
 		inline void Cerrar() { m_Corriendo = false; }
 
-		void RecibirEventos();
+		void ManejarEventos(const IManejadorDeEventos& manejadorEventos);
 		void Cambiar();
 
 		std::unique_ptr<Renderizador> CrearRenderizador();

@@ -91,6 +91,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ext\glad\glad.c" />
+    <ClCompile Include="src\Client\ManejadorEventosJuego.cpp" />
     <ClCompile Include="src\Engine\Libs\stb_image\stb_image.cpp" />
     <ClCompile Include="src\Client\Game.cpp" />
     <ClCompile Include="src\Client\main.cpp" />
@@ -105,8 +106,24 @@
     <ClCompile Include="src\Engine\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Client\ManejadorEventosJuego.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="src\Engine\Libs\stb_image\stb_image.h" />
     <ClInclude Include="src\Client\Game.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Eventos\IManejadorDeEventos.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Plataforma\MouseBotones.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Plataforma\TecladoTecla.hpp">
       <SubType>
       </SubType>
     </ClInclude>

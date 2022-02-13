@@ -9,7 +9,8 @@
 
 /*TODO:
 
-1. Manejador de Eventos
+-----1.1. Manejador de Eventos 
+1.2. Manejador de Eventos
 2. Logeo => Mensajes a la consola
 3. Manejar Errores
 4. Interfaz Grafica (50%)
@@ -24,9 +25,11 @@ etc....
 */
 
 
-Game::Game()
+Game::Game() :
+	m_ManejadorDeEventos(*this)
 {
 	m_Window = std::make_unique<GL::Window>(Nombre, Ancho, Alto);
+
 	m_Renderizador = m_Window->CrearRenderizador();
 
 	m_Textura = GL::Textura::DesdeArchivo("./assets/img/peloNaranja16x16.png");
@@ -82,7 +85,7 @@ void Game::Run()
 
 void Game::ManejarEntradaDeUsuario()
 {
-	m_Window->RecibirEventos();
+	m_Window->ManejarEventos(m_ManejadorDeEventos);
 
 	//si aplasto arriba, subir x
 

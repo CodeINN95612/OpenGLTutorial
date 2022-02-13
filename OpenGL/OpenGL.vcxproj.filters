@@ -54,6 +54,9 @@
     <ClCompile Include="src\Engine\Renderizador\Textura.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Client\ManejadorEventosJuego.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Engine\Window.hpp">
@@ -87,6 +90,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\Renderizador\Textura.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Eventos\IManejadorDeEventos.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Client\ManejadorEventosJuego.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Plataforma\MouseBotones.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Plataforma\TecladoTecla.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

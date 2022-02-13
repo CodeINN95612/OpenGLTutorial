@@ -5,10 +5,13 @@
 #include "Renderizador/Shader.hpp"
 #include "Renderizador/Textura.hpp"
 
+#include "ManejadorEventosJuego.hpp"
+
 #include <memory>
 
 class Game
 {
+	friend class ManejadorEventosJuego;
 public:
 	inline static constexpr const char* Nombre = "Juego de Prueba";
 	inline static constexpr const uint32_t Ancho = 800;
@@ -25,6 +28,8 @@ public:
 
 private:
 	std::unique_ptr<GL::Window> m_Window{};
+	ManejadorEventosJuego m_ManejadorDeEventos;
+
 	std::unique_ptr<GL::Renderizador> m_Renderizador{};
 
 	std::shared_ptr<GL::Textura> m_Textura;

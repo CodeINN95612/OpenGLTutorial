@@ -8,6 +8,8 @@
 
 namespace GL
 {
+	static void GestinarEvento(SDL_Event& e, const IManejadorDeEventos& manejadorEventos);
+
 	Window::Window(const char* nombre, uint32_t width, uint32_t height)
 	{
 		assert(SDL_Init(SDL_INIT_EVERYTHING) == 0 && "No se pudo inicializar SDL"); //TODO: assert deberia ser un error
@@ -39,17 +41,12 @@ namespace GL
 		SDL_Quit();
 	}
 
-	void Window::RecibirEventos()
+	void Window::ManejarEventos(const IManejadorDeEventos& manejadorEventos)
 	{
 		SDL_Event e;
 		while (SDL_PollEvent(&e) != 0)
 		{
-			switch (e.type)
-			{
-				case SDL_QUIT:
-					m_Corriendo = false;
-					break;
-			}
+			GestinarEvento(e, manejadorEventos);
 		}
 	}
 
@@ -57,8 +54,73 @@ namespace GL
 	{
 		SDL_GL_SwapWindow((SDL_Window*)m_WindowHandle);
 	}
+
 	std::unique_ptr<Renderizador> Window::CrearRenderizador()
 	{
 		return std::make_unique<Renderizador>();
+	}
+
+	//Eventos
+	void GestinarEvento(SDL_Event& e, const IManejadorDeEventos& manejadorEventos)
+	{
+		switch (e.type)
+		{
+			//Ventana
+			case SDL_QUIT:
+				manejadorEventos.EventoPantallaCerrar();
+				break;
+			case SDL_WINDOWEVENT:
+
+				switch (e.window.event)
+				{
+					case SDL_WINDOWEVENT_MOVED:
+						manejadorEventos.EventoPantallaMover(e.window.data1, e.window.data2);
+						break;
+
+					case SDL_WINDOWEVENT_RESIZED:
+						manejadorEventos.EventoPantallaCambiarDimension(e.window.data1, e.window.data2);
+						break;
+
+					case SDL_WINDOWEVENT_MINIMIZED:
+						manejadorEventos.EventoPantallaCambiarDimension(0, 0);
+						break;
+
+					case SDL_WINDOWEVENT_MAXIMIZED:
+						manejadorEventos.EventoPantallaCambiarDimension(INT32_MAX, INT32_MAX);
+						break;
+
+				}
+				break;
+
+			//Mouse
+			case SDL_MOUSEMOTION:
+				manejadorEventos.EventoMouseMover(e.motion.x, e.motion.y);
+				break;
+
+			case SDL_MOUSEBUTTONDOWN:
+				manejadorEventos.EventoMousePresionarBoton(e.button.x, e.button.y, e.button.clicks, (MouseBoton)e.button.button);
+				break;
+
+			case SDL_MOUSEBUTTONUP:
+				manejadorEventos.EventoMouseLiberarBoton(e.button.x, e.button.y, (MouseBoton)e.button.button);
+				break;
+
+			case SDL_MOUSEWHEEL:
+				manejadorEventos.EventoMouseMoverRueda(e.wheel.x, e.wheel.y);
+				break;
+
+			//Teclado
+			case SDL_KEYDOWN :
+				manejadorEventos.EventoTecladoPresionarTecla((TecladoTecla)e.key.keysym.sym, e.key.repeat);
+				break;
+
+			case SDL_KEYUP :
+				manejadorEventos.EventoTecladoLiberarTecla((TecladoTecla)e.key.keysym.sym);
+				break;
+
+			case SDL_TEXTINPUT:
+				manejadorEventos.EventoTecladoEscribir(e.text.text);
+				break;
+		}
 	}
 }
