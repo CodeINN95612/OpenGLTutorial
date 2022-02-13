@@ -1,16 +1,15 @@
 #include "Renderizador.hpp"
+#include "Plataforma/Logger.hpp"
 
 #include <glad/glad.h>
 
 #include <string>
-#include <stdio.h>
 
 static void ManejadorDeErrores(GLenum src, GLenum type, GLuint id, GLenum severity, GLsizei length,
 	GLchar const* msg, void const* user_param);
 
 static std::string FuenteComoString(GLenum fuente);
 static std::string TipoComoString(GLenum tipo);
-static std::string SeveridadComoString(GLenum severity);
 
 namespace GL
 {
@@ -42,13 +41,29 @@ void ManejadorDeErrores(GLenum src, GLenum type, GLuint id, GLenum severity, GLs
 {
 	std::string fuente = FuenteComoString(src);
 	std::string tipo = TipoComoString(type);
-	std::string severidad = SeveridadComoString(severity);
 
-	printf("Severidad: %s; Fuente: %s; Tipo: %s; Mensaje: %s\n", severidad.c_str(), fuente.c_str(), tipo.c_str(), msg);
+	switch (severity)
+	{
+		case GL_DEBUG_SEVERITY_NOTIFICATION:
+			GL_LOG_ENGINE_TRAZO("Fuente: {}; Tipo: {}; Mensaje: {}\n", fuente, tipo, msg);
+			break;
 
-	assert(severity != GL_DEBUG_SEVERITY_HIGH && "Error critico Encontrado");
-	assert(severity != GL_DEBUG_SEVERITY_MEDIUM && "Error de alto nivel Encontrado");
-	assert(severity != GL_DEBUG_SEVERITY_LOW && "Error de bajo nivel Encontrado");
+		case GL_DEBUG_SEVERITY_LOW:
+			GL_LOG_ENGINE_INFO("Fuente: {}; Tipo: {}; Mensaje: {}\n", fuente, tipo, msg);
+			assert(false);
+			break;
+
+		case GL_DEBUG_SEVERITY_MEDIUM:
+			GL_LOG_ENGINE_ADVERTENCIA("Fuente: {}; Tipo: {}; Mensaje: {}\n", fuente, tipo, msg);
+			assert(false);
+			break;
+
+		case GL_DEBUG_SEVERITY_HIGH:
+			GL_LOG_ENGINE_CRITICAL("Fuente: {}; Tipo: {}; Mensaje: {}\n", fuente, tipo, msg);
+			assert(false);
+			break;
+
+	}
 }
 
 std::string FuenteComoString(GLenum fuente)
@@ -77,19 +92,6 @@ std::string TipoComoString(GLenum tipo)
 		case GL_DEBUG_TYPE_PERFORMANCE: return "RENDIMIENTO";
 		case GL_DEBUG_TYPE_MARKER: return "MARCADOR";
 		case GL_DEBUG_TYPE_OTHER: return "OTRO";
-	}
-	assert(false);
-	return "";
-}
-
-std::string SeveridadComoString(GLenum severity)
-{
-	switch (severity) 
-	{
-		case GL_DEBUG_SEVERITY_NOTIFICATION: return "NOTIFICACION";
-		case GL_DEBUG_SEVERITY_LOW: return "LIGERA";
-		case GL_DEBUG_SEVERITY_MEDIUM: return "ALTA";
-		case GL_DEBUG_SEVERITY_HIGH: return "CRITICA";
 	}
 	assert(false);
 	return "";

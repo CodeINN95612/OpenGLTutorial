@@ -6,16 +6,17 @@
 
 #include "Utils/Archivo.hpp"
 
+#include "Plataforma/Logger.hpp"
 
 /*TODO:
 
 -----1.1. Manejador de Eventos 
 -----1.2. Manejador de Eventos
 -----1.3 Probar
-2. Logeo => Mensajes a la consola
-3. Manejar Errores
+-----2. Logeo => Mensajes a la consola
+3. Manejar Errores (partes) (crear propio assert) (opciones de debug)
 4. Interfaz Grafica (50%)
-5. Solucionar Problemas, Errores, Bugs (Archivo, Estructura, Warnings de compilacion, Renderizador funciones)
+5. Solucionar Problemas, Errores, Bugs (Archivo, Estructura, Warnings de compilacion, Renderizador funciones, Licencias, Macros debug logger)
 
 -----------------------------------------------------
 Objetos de Juego (GameObjetcs)
@@ -29,6 +30,8 @@ etc....
 Game::Game() :
 	m_ManejadorDeEventos(*this)
 {
+	GL::Logger::Inicializar();
+
 	m_Window = std::make_unique<GL::Window>(Nombre, Ancho, Alto);
 
 	m_Renderizador = m_Window->CrearRenderizador();

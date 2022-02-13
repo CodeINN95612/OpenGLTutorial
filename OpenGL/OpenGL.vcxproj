@@ -95,6 +95,7 @@
     <ClCompile Include="src\Engine\Libs\stb_image\stb_image.cpp" />
     <ClCompile Include="src\Client\Game.cpp" />
     <ClCompile Include="src\Client\main.cpp" />
+    <ClCompile Include="src\Engine\Plataforma\Logger.cpp" />
     <ClCompile Include="src\Engine\Renderizador\Imagen.cpp" />
     <ClCompile Include="src\Engine\Renderizador\IndexBuffer.cpp" />
     <ClCompile Include="src\Engine\Renderizador\Renderizador.cpp" />
@@ -116,6 +117,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="src\Engine\Eventos\IManejadorDeEventos.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Plataforma\Logger.hpp">
       <SubType>
       </SubType>
     </ClInclude>

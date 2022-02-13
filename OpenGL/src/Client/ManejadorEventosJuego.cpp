@@ -1,6 +1,7 @@
 #include "ManejadorEventosJuego.hpp"
 
 #include "Game.hpp"
+#include "Plataforma/Logger.hpp"
 
 void ManejadorEventosJuego::EventoPantallaCerrar() const
 {
@@ -9,7 +10,6 @@ void ManejadorEventosJuego::EventoPantallaCerrar() const
 
 void ManejadorEventosJuego::EventoPantallaMover(int32_t x, int32_t y) const
 {
-	//printf("MovioPantalla\n");
 }
 
 void ManejadorEventosJuego::EventoPantallaCambiarDimension(int32_t ancho, int32_t alto) const
@@ -20,12 +20,10 @@ void ManejadorEventosJuego::EventoPantallaCambiarDimension(int32_t ancho, int32_
 
 void ManejadorEventosJuego::EventoMouseMover(int32_t x, int32_t y) const
 {
-	//printf("Mueve Mouse %i, %i\n",x,y);
 }
 
 void ManejadorEventosJuego::EventoMousePresionarBoton(int32_t x, int32_t y, uint8_t clicks, GL::MouseBoton boton) const
 {
-	//printf("Presiono Boton %i\n", boton);
 }
 
 void ManejadorEventosJuego::EventoMouseLiberarBoton(int32_t x, int32_t y, GL::MouseBoton boton) const
@@ -46,5 +44,5 @@ void ManejadorEventosJuego::EventoTecladoLiberarTecla(GL::TecladoTecla tecla) co
 
 void ManejadorEventosJuego::EventoTecladoEscribir(char* caracter) const
 {
-	printf("Escribio: %s\n", caracter);
+	GL_LOG_INFO("Escribio: {}", caracter);
 }
