@@ -1,10 +1,9 @@
 #include "Window.hpp"
+#include "Plataforma/Assert.hpp"
 
 #include <glad/glad.h>
 #include <SDL/SDL.h>
 
-#include <assert.h>
-#include "Window.hpp"
 
 namespace GL
 {
@@ -12,14 +11,14 @@ namespace GL
 
 	Window::Window(const char* nombre, uint32_t width, uint32_t height)
 	{
-		assert(SDL_Init(SDL_INIT_EVERYTHING) == 0 && "No se pudo inicializar SDL"); //TODO: assert deberia ser un error
+		GL_ASSERT(SDL_Init(SDL_INIT_EVERYTHING) == 0, "No se pudo inicializar SDL"); //TODO: assert deberia ser un error
 
 		m_WindowHandle = SDL_CreateWindow(nombre, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
-		assert(m_WindowHandle && "No se creo la ventana SDL");
+		GL_ASSERT(m_WindowHandle, "No se creo la ventana SDL");
 
 		m_OpenGLContext = SDL_GL_CreateContext((SDL_Window*)m_WindowHandle);
 
-		assert(m_OpenGLContext && "No se creo el contexto de OpenGL");
+		GL_ASSERT(m_OpenGLContext, "No se creo el contexto de OpenGL");
 
 		SDL_GL_SetSwapInterval(1);
 
@@ -29,7 +28,7 @@ namespace GL
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 		//SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
-		assert(gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress) != 0 && "No fue posible inicializar GLAD");
+		GL_ASSERT(gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress) != 0, "No fue posible inicializar GLAD");
 
 	}
 

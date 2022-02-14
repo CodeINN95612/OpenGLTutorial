@@ -1,10 +1,9 @@
 #include "Shader.hpp"
+#include "Utils/Archivo.hpp"
+#include "Plataforma/Assert.hpp"
 
 #include <glad/glad.h>
 
-#include "Utils/Archivo.hpp"
-
-#include <assert.h>
 
 namespace GL
 {
@@ -39,8 +38,8 @@ namespace GL
 		char* vertexShader = nullptr;
 		char* fragmentShader = nullptr;
 
-		assert(Archivo::Leer(archivoVertexShader, &vertexShader) && "No se pudo abrir el archivo del vertex shader");
-		assert(Archivo::Leer(archivoFragmentShader, &fragmentShader) && "No se pudo abrir el archivo del fragment shader");
+		GL_ASSERT(Archivo::Leer(archivoVertexShader, &vertexShader), "No se pudo abrir el archivo del vertex shader");
+		GL_ASSERT(Archivo::Leer(archivoFragmentShader, &fragmentShader), "No se pudo abrir el archivo del fragment shader");
 
 		std::shared_ptr<Shader> retorno = std::make_shared<Shader>(vertexShader, fragmentShader);
 
@@ -71,7 +70,7 @@ namespace GL
 	{
 		Bind();
 		int32_t location = glGetUniformLocation(m_Programa, nombre);
-		assert(location > -1 && "No fue posible encontrar el Uniform");
+		GL_ASSERT(location > -1, "No fue posible encontrar el Uniform");
 		return location;
 	}
 }

@@ -1,8 +1,8 @@
 #include "Imagen.hpp"
+#include "Plataforma/Assert.hpp"
 
 #include "Libs/stb_image/stb_image.h"
 
-#include <assert.h>
 
 namespace GL
 {
@@ -27,7 +27,7 @@ namespace GL
 		uint8_t* buffer;
 
 		buffer = stbi_load(archivo, &ancho, &alto, &canal, 0);
-		assert(buffer && "no se pudo cargar imagen de archivo");
+		GL_ASSERT(buffer, "no se pudo cargar imagen de archivo");
 
 		std::shared_ptr<Imagen> img = std::make_shared<Imagen>(ancho, alto, buffer, ancho * alto * canal, (Canal)canal);
 

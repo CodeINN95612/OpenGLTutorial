@@ -120,6 +120,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="src\Engine\Plataforma\Assert.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Plataforma\Defines.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="src\Engine\Plataforma\Logger.hpp">
       <SubType>
       </SubType>
