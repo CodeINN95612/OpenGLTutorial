@@ -1,4 +1,5 @@
 #pragma once
+#include "Engine/Renderizador/VertexArray.hpp"
 
 #include <glm/glm.hpp>
 
@@ -15,6 +16,8 @@ namespace GL
 
 		void Viewport(uint32_t x, uint32_t y, uint32_t ancho, uint32_t alto);
 		void LimpiarPantalla(const glm::vec4& color);
+
+		void Dibujar(const VertexArray* vertexArray);
 
 	};
 }

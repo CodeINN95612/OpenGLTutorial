@@ -1,5 +1,6 @@
 #include "Window.hpp"
-#include "Plataforma/Assert.hpp"
+#include "Engine/Plataforma/Assert.hpp"
+#include "Logger.hpp"
 
 #include <glad/glad.h>
 #include <SDL/SDL.h>
@@ -11,6 +12,7 @@ namespace GL
 
 	Window::Window(const char* nombre, uint32_t width, uint32_t height)
 	{
+		Logger::Inicializar();
 		GL_ASSERT(SDL_Init(SDL_INIT_EVERYTHING) == 0, "No se pudo inicializar SDL"); //TODO: assert deberia ser un error
 
 		m_WindowHandle = SDL_CreateWindow(nombre, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
@@ -38,6 +40,7 @@ namespace GL
 
 		SDL_DestroyWindow((SDL_Window*)m_WindowHandle);
 		SDL_Quit();
+		Logger::Finalizar();
 	}
 
 	void Window::ManejarEventos(const IManejadorDeEventos& manejadorEventos)

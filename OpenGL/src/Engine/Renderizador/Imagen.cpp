@@ -1,7 +1,6 @@
 #include "Imagen.hpp"
-#include "Plataforma/Assert.hpp"
-
-#include "Libs/stb_image/stb_image.h"
+#include "Engine/Plataforma/Assert.hpp"
+#include "Engine/Libs/stb_image/stb_image.h"
 
 
 namespace GL

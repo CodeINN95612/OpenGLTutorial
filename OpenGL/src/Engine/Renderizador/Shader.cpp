@@ -1,6 +1,6 @@
 #include "Shader.hpp"
-#include "Utils/Archivo.hpp"
-#include "Plataforma/Assert.hpp"
+#include "Engine/Utils/Archivo.hpp"
+#include "Engine/Plataforma/Assert.hpp"
 
 #include <glad/glad.h>
 
@@ -35,16 +35,13 @@ namespace GL
 
 	std::shared_ptr<Shader> Shader::DesdeArchivo(const char* archivoVertexShader, const char* archivoFragmentShader)
 	{
-		char* vertexShader = nullptr;
-		char* fragmentShader = nullptr;
+		std::string vertexShader = Archivo::Leer(archivoVertexShader);
+		std::string fragmentShader = Archivo::Leer(archivoFragmentShader);
 
-		GL_ASSERT(Archivo::Leer(archivoVertexShader, &vertexShader), "No se pudo abrir el archivo del vertex shader");
-		GL_ASSERT(Archivo::Leer(archivoFragmentShader, &fragmentShader), "No se pudo abrir el archivo del fragment shader");
+		GL_ASSERT(!vertexShader.empty(), "No se pudo abrir el archivo del vertex shader");
+		GL_ASSERT(!vertexShader.empty(), "No se pudo abrir el archivo del fragment shader");
 
-		std::shared_ptr<Shader> retorno = std::make_shared<Shader>(vertexShader, fragmentShader);
-
-		Archivo::Liberar(vertexShader);
-		Archivo::Liberar(fragmentShader);
+		std::shared_ptr<Shader> retorno = std::make_shared<Shader>(vertexShader.c_str(), fragmentShader.c_str());
 
 		return retorno;
 	}

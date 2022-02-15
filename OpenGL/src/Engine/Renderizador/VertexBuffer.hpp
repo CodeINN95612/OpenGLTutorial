@@ -7,7 +7,7 @@ namespace GL
 	class VertexBuffer
 	{
 	public:
-		VertexBuffer(size_t cantidad, float* data);
+		VertexBuffer(uint32_t cantidad, float* data);
 		virtual ~VertexBuffer();
 
 		VertexBuffer(const VertexBuffer& other) = delete;
@@ -17,7 +17,7 @@ namespace GL
 		inline uint32_t GetObjeto() const { return m_Objeto; }
 
 	private:
-		size_t m_Cantidad = 0;
+		uint32_t m_Cantidad = 0;
 		uint32_t m_Objeto = 0;
 	};
 }

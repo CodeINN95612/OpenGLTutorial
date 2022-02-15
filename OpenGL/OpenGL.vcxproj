@@ -60,7 +60,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)include\;$(SolutionDir)$(ProjectName)\src\Engine\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)include\;$(SolutionDir)$(ProjectName)\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -78,7 +78,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)include\;$(SolutionDir)$(ProjectName)\src\Engine\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)include\;$(SolutionDir)$(ProjectName)\src\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -105,10 +105,14 @@
     <ClCompile Include="src\Engine\Renderizador\VertexArray.cpp" />
     <ClCompile Include="src\Engine\Renderizador\VertexBuffer.cpp" />
     <ClCompile Include="src\Engine\Utils\Archivo.cpp" />
-    <ClCompile Include="src\Engine\Window.cpp" />
+    <ClCompile Include="src\Engine\Plataforma\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Client\ManejadorEventosJuego.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Engine.hpp">
       <SubType>
       </SubType>
     </ClInclude>
@@ -177,7 +181,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="src\Engine\Window.hpp" />
+    <ClInclude Include="src\Engine\Plataforma\Window.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\Basic.frag" />

@@ -1,4 +1,5 @@
 #pragma once
+#include "Engine/Plataforma/Defines.hpp"
 
 #include <spdlog/spdlog.h>
 #include <memory>
@@ -24,13 +25,22 @@ namespace GL
 		static std::shared_ptr<spdlog::logger> s_EngineLogger;
 		static std::shared_ptr<spdlog::logger> s_ClientLogger;
 	};
+#if ENGINE_DEBUG
+	#define GL_LOG_ENGINE_TRAZO(...) ::GL::Logger::GetEngineLogger()->trace(__VA_ARGS__)
+#else
+	#define GL_LOG_ENGINE_TRAZO(...) (void(0))
+#endif
 
-#define GL_LOG_ENGINE_TRAZO(...) ::GL::Logger::GetEngineLogger()->trace(__VA_ARGS__)
 #define GL_LOG_ENGINE_INFO(...) ::GL::Logger::GetEngineLogger()->info(__VA_ARGS__)
 #define GL_LOG_ENGINE_ADVERTENCIA(...) ::GL::Logger::GetEngineLogger()->warn(__VA_ARGS__)
 #define GL_LOG_ENGINE_CRITICAL(...) ::GL::Logger::GetEngineLogger()->critical(__VA_ARGS__)
 
+#if ENGINE_DEBUG
 #define GL_LOG_TRAZO(...) ::GL::Logger::GetClientLogger()->trace(__VA_ARGS__)
+#else
+#define GL_LOG_TRAZO(...) (void(0))
+#endif
+
 #define GL_LOG_INFO(...) ::GL::Logger::GetClientLogger()->info(__VA_ARGS__)
 #define GL_LOG_ADVERTENCIA(...) ::GL::Logger::GetClientLogger()->warn(__VA_ARGS__)
 #define GL_LOG_CRITICAL(...) ::GL::Logger::GetClientLogger()->critical(__VA_ARGS__)

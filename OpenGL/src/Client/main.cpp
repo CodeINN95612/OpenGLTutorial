@@ -1,6 +1,4 @@
 #include "Game.hpp"
-#include "Excepciones/Excepcion.hpp"
-
 
 int main(int argc, char** argv)
 {

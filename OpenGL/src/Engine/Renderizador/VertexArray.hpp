@@ -36,6 +36,7 @@ namespace GL
 
 		inline uint32_t GetObjeto() const { return m_Objeto; }
 		uint32_t GetDrawCount() const;
+		bool IsElement() const { return (bool)m_IndexBuffer; }
 
 		void SetDataBuffer(std::shared_ptr<VertexBuffer> vertexBuffer, std::shared_ptr<IndexBuffer> indexBuffer);
 

@@ -1,7 +1,7 @@
 #include "ManejadorEventosJuego.hpp"
 
 #include "Game.hpp"
-#include "Plataforma/Logger.hpp"
+#include "Engine/Plataforma/Logger.hpp"
 
 void ManejadorEventosJuego::EventoPantallaCerrar() const
 {

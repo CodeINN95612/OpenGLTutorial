@@ -1,12 +1,8 @@
 #pragma once
 
-#include "Window.hpp"
-#include "Renderizador/VertexArray.hpp"
-#include "Renderizador/Shader.hpp"
-#include "Renderizador/Textura.hpp"
-
 #include "ManejadorEventosJuego.hpp"
 
+#include <Engine/Engine.hpp>
 #include <memory>
 
 class Game

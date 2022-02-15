@@ -1,5 +1,5 @@
 #include "Renderizador.hpp"
-#include "Plataforma/Logger.hpp"
+#include "Engine/Plataforma/Logger.hpp"
 
 #include <glad/glad.h>
 
@@ -34,6 +34,14 @@ namespace GL
 	{
 		glClearColor(color.r, color.g, color.b, color.a);
 		glClear(GL_COLOR_BUFFER_BIT);
+	}
+
+	void Renderizador::Dibujar(const VertexArray* vertexArray)
+	{
+		if (vertexArray->IsElement())
+			glDrawElements(GL_TRIANGLES, vertexArray->GetDrawCount(), GL_UNSIGNED_BYTE, 0);
+		else
+			glDrawArrays(GL_TRIANGLES, 0, vertexArray->GetDrawCount());
 	}
 }
 

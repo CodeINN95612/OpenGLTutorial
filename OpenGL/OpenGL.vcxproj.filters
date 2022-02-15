@@ -18,7 +18,7 @@
     <ClCompile Include="src\Client\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\Window.cpp">
+    <ClCompile Include="src\Engine\Plataforma\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Client\Game.cpp">
@@ -65,7 +65,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Engine\Window.hpp">
+    <ClInclude Include="src\Engine\Plataforma\Window.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Client\Game.hpp">
@@ -120,6 +120,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\Excepciones\Excepcion.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Engine.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,12 +2,6 @@
 
 #include <glm/glm.hpp>
 
-#include <glad/glad.h>
-
-#include "Utils/Archivo.hpp"
-
-#include "Plataforma/Logger.hpp"
-
 /*TODO:
 
 -----1.1. Manejador de Eventos 
@@ -15,7 +9,7 @@
 -----1.3 Probar
 -----2. Logeo => Mensajes a la consola
 -----3. Manejar Errores (crear propio assert) (opciones de debug)
-4. Solucionar Problemas, Errores, Bugs (Archivo, Estructura, Warnings de compilacion, Renderizador funciones, Licencias, Macros debug logger)
+-----4. Solucionar Problemas, Errores, Bugs (--Archivo, --Estructura, --Warnings de compilacion, --Renderizador funciones, --Licencias, --Macros debug logger--)
 5. Interfaz Grafica (50%)
 
 -----------------------------------------------------
@@ -30,8 +24,6 @@ etc....
 Game::Game() :
 	m_ManejadorDeEventos(*this)
 {
-	GL::Logger::Inicializar();
-
 	m_Window = std::make_unique<GL::Window>(Nombre, Ancho, Alto);
 
 	m_Renderizador = m_Window->CrearRenderizador();
@@ -60,10 +52,10 @@ Game::Game() :
 		{1, GL::VertexArray::TipoAtributo::Float2},
 	};
 
-	std::shared_ptr<GL::VertexBuffer> vertexBuffer = std::make_shared<GL::VertexBuffer>(sizeof(vertices) / sizeof(vertices[0]), vertices);
-	std::shared_ptr<GL::IndexBuffer> indexBuffer = std::make_shared<GL::IndexBuffer>(sizeof(indices) / sizeof(indices[0]), indices);
+	std::shared_ptr<GL::VertexBuffer> vertexBuffer = std::make_shared<GL::VertexBuffer>((uint32_t)(sizeof(vertices) / sizeof(vertices[0])), vertices);
+	std::shared_ptr<GL::IndexBuffer> indexBuffer = std::make_shared<GL::IndexBuffer>((uint32_t)(sizeof(indices) / sizeof(indices[0])), indices);
 
-	m_VertexArray = std::make_unique<GL::VertexArray>(atributos, sizeof(atributos) / sizeof(atributos[0]));
+	m_VertexArray = std::make_unique<GL::VertexArray>(atributos, (uint32_t)(sizeof(atributos) / sizeof(atributos[0])));
 	m_VertexArray->SetDataBuffer(vertexBuffer, indexBuffer);
 }
 
@@ -108,10 +100,10 @@ void Game::Renderizar()
 	m_Textura->Bind(0);
 	m_Shader->Bind();
 	m_VertexArray->Bind();
-	glDrawElements(GL_TRIANGLES, m_VertexArray->GetDrawCount(), GL_UNSIGNED_BYTE, nullptr);
+	m_Renderizador->Dibujar(m_VertexArray.get());
 
 	m_TexturaVentana->Bind(0);
-	glDrawElements(GL_TRIANGLES, m_VertexArray->GetDrawCount(), GL_UNSIGNED_BYTE, nullptr);
+	m_Renderizador->Dibujar(m_VertexArray.get());
 	////////////////////
 
 	m_Window->Cambiar();

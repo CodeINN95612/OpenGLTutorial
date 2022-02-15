@@ -2,7 +2,7 @@
 #include "Defines.hpp"
 
 #if ENGINE_DEBUG
-#include "Plataforma/Logger.hpp"
+#include "Engine/Plataforma/Logger.hpp"
 	#define GL_ASSERT(x, msg) { \
 			if(!(x)) \
 			{ \
@@ -12,7 +12,7 @@
 		}
 
 #else
-#include "Excepciones/Excepcion.hpp"
+#include "Engine/Excepciones/Excepcion.hpp"
 	#define GL_ASSERT(x, msg) { \
 				if(!(x)) \
 				{ \

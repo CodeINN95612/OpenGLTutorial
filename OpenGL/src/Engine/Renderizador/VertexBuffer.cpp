@@ -4,7 +4,7 @@
 
 namespace GL
 {
-	VertexBuffer::VertexBuffer(size_t cantidad, float* data) :
+	VertexBuffer::VertexBuffer(uint32_t cantidad, float* data) :
 		m_Cantidad(cantidad)
 	{
 		glCreateBuffers(1, &m_Objeto);

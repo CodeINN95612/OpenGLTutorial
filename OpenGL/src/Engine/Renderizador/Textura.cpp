@@ -19,7 +19,7 @@ namespace GL
 		if (dim.x == 0 || dim.y == 0)
 			dim = { imagen->GetAncho(), imagen->GetAlto() };
 
-		glTextureSubImage2D(m_Objeto, 0, pos.x, pos.y, dim.x, dim.y, ObtenerFormato(imagen->GetCanal()), GL_UNSIGNED_BYTE, imagen->GetBuffer());
+		glTextureSubImage2D(m_Objeto, 0, (GLsizei)pos.x, (GLsizei)pos.y, (GLint)dim.x, (GLint)dim.y, ObtenerFormato(imagen->GetCanal()), GL_UNSIGNED_BYTE, imagen->GetBuffer());
 	}
 
 	Textura::~Textura()
