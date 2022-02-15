@@ -1,10 +1,19 @@
 #include "Game.hpp"
+#include "Excepciones/Excepcion.hpp"
 
 
 int main(int argc, char** argv)
 {
-	Game game;
-	game.Run();
+	try
+	{
+		Game game;
+		game.Run();
+	}
+	catch (GL::Excepcion& e)
+	{
+		e.Log();
+		exit(2);
+	}
 
 	return 0;
 }

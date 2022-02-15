@@ -1,17 +1,23 @@
 #pragma once
 #include "Defines.hpp"
-#include "Plataforma/Logger.hpp"
 
 #if ENGINE_DEBUG
-	#define GL_ASSERT(x, ...) { \
+#include "Plataforma/Logger.hpp"
+	#define GL_ASSERT(x, msg) { \
 			if(!(x)) \
 			{ \
-				GL_LOG_ENGINE_CRITICAL(__VA_ARGS__); \
+				GL_LOG_ENGINE_CRITICAL("Asercion fallida. Archivo: [{}]. Linea: [{}].  Mensaje: {}", __FILE__, __LINE__, msg); \
 				abort(); \
 			} \
 		}
 
 #else
-	#define GL_ASSERT(x, ...) x
+#include "Excepciones/Excepcion.hpp"
+	#define GL_ASSERT(x, msg) { \
+				if(!(x)) \
+				{ \
+					throw ::GL::Excepcion(__FILE__, __LINE__, msg); \
+				} \
+			}
 #endif
 

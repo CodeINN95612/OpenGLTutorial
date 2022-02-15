@@ -14,9 +14,9 @@
 -----1.2. Manejador de Eventos
 -----1.3 Probar
 -----2. Logeo => Mensajes a la consola
-3. Manejar Errores (partes) (crear propio assert) (opciones de debug)
-4. Interfaz Grafica (50%)
-5. Solucionar Problemas, Errores, Bugs (Archivo, Estructura, Warnings de compilacion, Renderizador funciones, Licencias, Macros debug logger)
+-----3. Manejar Errores (crear propio assert) (opciones de debug)
+4. Solucionar Problemas, Errores, Bugs (Archivo, Estructura, Warnings de compilacion, Renderizador funciones, Licencias, Macros debug logger)
+5. Interfaz Grafica (50%)
 
 -----------------------------------------------------
 Objetos de Juego (GameObjetcs)

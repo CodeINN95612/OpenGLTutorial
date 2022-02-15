@@ -92,6 +92,7 @@
   <ItemGroup>
     <ClCompile Include="ext\glad\glad.c" />
     <ClCompile Include="src\Client\ManejadorEventosJuego.cpp" />
+    <ClCompile Include="src\Engine\Excepciones\Excepcion.cpp" />
     <ClCompile Include="src\Engine\Libs\stb_image\stb_image.cpp" />
     <ClCompile Include="src\Client\Game.cpp" />
     <ClCompile Include="src\Client\main.cpp" />
@@ -108,6 +109,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Client\ManejadorEventosJuego.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Excepciones\Excepcion.hpp">
       <SubType>
       </SubType>
     </ClInclude>
