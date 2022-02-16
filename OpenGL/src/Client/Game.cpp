@@ -13,6 +13,8 @@
 -----5. Interfaz Grafica (50%)
 
 -----------------------------------------------------
+Entradas de Usuario
+Camaras => Renderizador
 Objetos de Juego (GameObjetcs)
 Escenas
 Sistemas
@@ -71,7 +73,7 @@ void Game::Run()
 
 	while (m_Window->Corriendo())
 	{
-		m_Renderizador->LimpiarPantalla(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
+		m_Renderizador->LimpiarPantalla(ColorLimpieza);
 
 		ManejarEntradaDeUsuario();
 
@@ -79,7 +81,9 @@ void Game::Run()
 
 		Renderizar();
 
-		m_Window->GuiEjemplo();
+		GL::Gui::EmpezarFrame();
+		RenderizarGui();
+		GL::Gui::TerminarFrame();
 
 		m_Window->Cambiar();
 	}
@@ -111,4 +115,11 @@ void Game::Renderizar()
 	m_Renderizador->Dibujar(m_VertexArray.get());
 	////////////////////
 
+}
+
+void Game::RenderizarGui()
+{
+	ImGui::Begin("Color");
+	ImGui::ColorEdit3("Color Fondo", glm::value_ptr(ColorLimpieza));
+	ImGui::End();
 }

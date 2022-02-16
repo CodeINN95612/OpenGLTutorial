@@ -25,8 +25,6 @@ namespace GL
 		void ManejarEventos(const IManejadorDeEventos& manejadorEventos);
 		void Cambiar();
 
-		void GuiEjemplo();
-
 		std::unique_ptr<Renderizador> CrearRenderizador();
 
 	private:

@@ -1,5 +1,9 @@
 #pragma once
 
+//Matematicas
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 //Eventos
 #include "Eventos/IManejadorDeEventos.hpp"
 
@@ -22,3 +26,7 @@
 #include "Renderizador/Imagen.hpp"
 #include "Renderizador/Textura.hpp"
 #include "Renderizador/Renderizador.hpp"
+
+//Gui
+#include "Engine/Libs/imgui/imgui.h"
+#include "Engine/Gui/Gui.hpp"

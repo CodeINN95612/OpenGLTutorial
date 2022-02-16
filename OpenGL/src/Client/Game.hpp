@@ -33,8 +33,12 @@ private:
 	std::shared_ptr<GL::Shader> m_Shader;
 	std::unique_ptr<GL::VertexArray> m_VertexArray;
 
+	//Variables de Juego
+	glm::vec4 ColorLimpieza{ 0.1f, 0.1f, 0.1f, 1.0f};
+
 private:
 	void ManejarEntradaDeUsuario();
 	void Actualizar();
 	void Renderizar();
+	void RenderizarGui();
 };

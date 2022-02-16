@@ -93,6 +93,7 @@
     <ClCompile Include="ext\glad\glad.c" />
     <ClCompile Include="src\Client\ManejadorEventosJuego.cpp" />
     <ClCompile Include="src\Engine\Excepciones\Excepcion.cpp" />
+    <ClCompile Include="src\Engine\Gui\Gui.cpp" />
     <ClCompile Include="src\Engine\Libs\imgui\imgui.cpp" />
     <ClCompile Include="src\Engine\Libs\imgui\imgui_demo.cpp" />
     <ClCompile Include="src\Engine\Libs\imgui\imgui_draw.cpp" />
@@ -124,6 +125,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="src\Engine\Excepciones\Excepcion.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Gui\Gui.hpp">
       <SubType>
       </SubType>
     </ClInclude>
