@@ -13,8 +13,8 @@
 -----5. Interfaz Grafica (50%)
 
 -----------------------------------------------------
-Entradas de Usuario
 Camaras => Renderizador
+Entradas de Usuario
 Objetos de Juego (GameObjetcs)
 Escenas
 Sistemas
@@ -35,6 +35,10 @@ Game::Game() :
 
 	m_Shader = GL::Shader::DesdeArchivo("./assets/shaders/Basic.vert", "./assets/shaders/Basic.frag");
 	m_Shader->UniformTextura("uTextura", 0);
+
+	glm::mat4 projection = glm::ortho(-(Ancho / 5.0f), (Ancho / 5.0f), -(Alto / 5.0f), (Alto / 5.0f));
+	m_Shader->UniformMat4("uProjection", projection);
+	//m_Shader->UniformMat4("uProjection", glm::mat4(1.0f));
 
 	float vertices[] = {
 		-0.5f,  0.5f, 0.0f, 1.0f,
@@ -106,6 +110,8 @@ void Game::Renderizar()
 {
 
 	//////////////////////
+	m_Shader->Uniform1f("uScala", m_Scala);
+
 	m_Textura->Bind(0);
 	m_Shader->Bind();
 	m_VertexArray->Bind();
@@ -121,5 +127,7 @@ void Game::RenderizarGui()
 {
 	ImGui::Begin("Color");
 	ImGui::ColorEdit3("Color Fondo", glm::value_ptr(ColorLimpieza));
+	ImGui::Separator();
+	ImGui::DragFloat("escala", &m_Scala, 5.0f, 1.0f, 500.0f);
 	ImGui::End();
 }

@@ -14,8 +14,11 @@ void ManejadorEventosJuego::EventoPantallaMover(int32_t x, int32_t y) const
 
 void ManejadorEventosJuego::EventoPantallaCambiarDimension(int32_t ancho, int32_t alto) const
 {
-	if(ancho != 0 && alto != 0)
+	if (ancho != 0 && alto != 0)
+	{
 		m_Juego.m_Renderizador->Viewport(0, 0, ancho, alto);
+		m_Juego.m_Shader->UniformMat4("uProjection", glm::ortho(-(ancho/5.0f), ancho/5.0f, -(alto / 5.0f), alto / 5.0f));
+	}
 }
 
 void ManejadorEventosJuego::EventoMouseMover(int32_t x, int32_t y) const

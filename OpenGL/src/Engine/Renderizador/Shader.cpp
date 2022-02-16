@@ -3,6 +3,7 @@
 #include "Engine/Plataforma/Assert.hpp"
 
 #include <glad/glad.h>
+#include <glm/gtc/type_ptr.hpp>
 
 
 namespace GL
@@ -51,10 +52,22 @@ namespace GL
 		glUseProgram(m_Programa);
 	}
 
+	void Shader::Uniform1f(const char* nombre, float val)
+	{
+		int32_t location = GetUniformLocation(nombre);
+		glUniform1f(location, val);
+	}
+
 	void Shader::Uniform4f(const char* nombre, const glm::vec4& valores)
 	{
 		int32_t location = GetUniformLocation(nombre);
 		glUniform4f(location, valores.r, valores.g, valores.b, valores.a);
+	}
+
+	void Shader::UniformMat4(const char* nombre, const glm::mat4& valores)
+	{
+		int32_t location = GetUniformLocation(nombre);
+		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(valores));
 	}
 
 	void Shader::UniformTextura(const char* nombre, int val)

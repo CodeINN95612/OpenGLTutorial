@@ -35,6 +35,7 @@ private:
 
 	//Variables de Juego
 	glm::vec4 ColorLimpieza{ 0.1f, 0.1f, 0.1f, 1.0f};
+	float m_Scala = 1.0f;
 
 private:
 	void ManejarEntradaDeUsuario();

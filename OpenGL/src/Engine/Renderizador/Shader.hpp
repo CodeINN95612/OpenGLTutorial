@@ -20,7 +20,9 @@ namespace GL
 
 		void Bind();
 
+		void Uniform1f(const char* nombre, float val);
 		void Uniform4f(const char* nombre, const glm::vec4& valores);
+		void UniformMat4(const char* nombre, const glm::mat4& valores);
 		void UniformTextura(const char* nombre, int val);
 
 	private:
