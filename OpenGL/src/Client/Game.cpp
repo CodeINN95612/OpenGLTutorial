@@ -10,7 +10,7 @@
 -----2. Logeo => Mensajes a la consola
 -----3. Manejar Errores (crear propio assert) (opciones de debug)
 -----4. Solucionar Problemas, Errores, Bugs (--Archivo, --Estructura, --Warnings de compilacion, --Renderizador funciones, --Licencias, --Macros debug logger--)
-5. Interfaz Grafica (50%)
+-----5. Interfaz Grafica (50%)
 
 -----------------------------------------------------
 Objetos de Juego (GameObjetcs)
@@ -71,11 +71,17 @@ void Game::Run()
 
 	while (m_Window->Corriendo())
 	{
+		m_Renderizador->LimpiarPantalla(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
+
 		ManejarEntradaDeUsuario();
 
 		Actualizar();
 
 		Renderizar();
+
+		m_Window->GuiEjemplo();
+
+		m_Window->Cambiar();
 	}
 }
 
@@ -94,7 +100,6 @@ void Game::Actualizar()
 
 void Game::Renderizar()
 {
-	m_Renderizador->LimpiarPantalla(glm::vec4( 0.1f, 0.1f, 0.1f, 1.0f ));
 
 	//////////////////////
 	m_Textura->Bind(0);
@@ -106,5 +111,4 @@ void Game::Renderizar()
 	m_Renderizador->Dibujar(m_VertexArray.get());
 	////////////////////
 
-	m_Window->Cambiar();
 }
