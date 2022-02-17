@@ -4,15 +4,6 @@
 
 /*TODO:
 
------1.1. Manejador de Eventos 
------1.2. Manejador de Eventos
------1.3 Probar
------2. Logeo => Mensajes a la consola
------3. Manejar Errores (crear propio assert) (opciones de debug)
------4. Solucionar Problemas, Errores, Bugs (--Archivo, --Estructura, --Warnings de compilacion, --Renderizador funciones, --Licencias, --Macros debug logger--)
------5. Interfaz Grafica (50%)
-
------------------------------------------------------
 Camaras => Renderizador
 Entradas de Usuario
 Objetos de Juego (GameObjetcs)
@@ -35,10 +26,6 @@ Game::Game() :
 
 	m_Shader = GL::Shader::DesdeArchivo("./assets/shaders/Basic.vert", "./assets/shaders/Basic.frag");
 	m_Shader->UniformTextura("uTextura", 0);
-
-	glm::mat4 projection = glm::ortho(-(Ancho / 5.0f), (Ancho / 5.0f), -(Alto / 5.0f), (Alto / 5.0f));
-	m_Shader->UniformMat4("uProjection", projection);
-	//m_Shader->UniformMat4("uProjection", glm::mat4(1.0f));
 
 	float vertices[] = {
 		-0.5f,  0.5f, 0.0f, 1.0f,
@@ -103,14 +90,15 @@ void Game::ManejarEntradaDeUsuario()
 
 void Game::Actualizar()
 {
-	//poner coordenada = x
+	m_Camara.Actualizar();
 }
 
 void Game::Renderizar()
 {
 
 	//////////////////////
-	m_Shader->Uniform1f("uScala", m_Scala);
+	m_Shader->UniformMat4("uVistaProyeccion", m_Camara.GetMatrixVistaProyeccion());
+	m_Shader->Uniform1f("uEscala", m_Escala);
 
 	m_Textura->Bind(0);
 	m_Shader->Bind();
@@ -128,6 +116,6 @@ void Game::RenderizarGui()
 	ImGui::Begin("Color");
 	ImGui::ColorEdit3("Color Fondo", glm::value_ptr(ColorLimpieza));
 	ImGui::Separator();
-	ImGui::DragFloat("escala", &m_Scala, 5.0f, 1.0f, 500.0f);
+	ImGui::DragFloat("escala", &m_Escala, 5.0f, 1.0f, 500.0f);
 	ImGui::End();
 }

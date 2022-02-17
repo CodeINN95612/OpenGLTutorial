@@ -30,3 +30,6 @@
 //Gui
 #include "Engine/Libs/imgui/imgui.h"
 #include "Engine/Gui/Gui.hpp"
+
+//Game
+#include "Engine/Game/CamaraOrtografica.hpp"

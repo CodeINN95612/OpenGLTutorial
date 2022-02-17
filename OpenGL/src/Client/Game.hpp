@@ -34,8 +34,9 @@ private:
 	std::unique_ptr<GL::VertexArray> m_VertexArray;
 
 	//Variables de Juego
+	GL::CamaraOrtografica m_Camara{ Ancho / 3.0f, Alto / 3.0f, {0.0f, 0.0f, -10.0f} };
 	glm::vec4 ColorLimpieza{ 0.1f, 0.1f, 0.1f, 1.0f};
-	float m_Scala = 1.0f;
+	float m_Escala = 1.0f;
 
 private:
 	void ManejarEntradaDeUsuario();
