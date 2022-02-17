@@ -1,7 +1,7 @@
 #pragma once
 
 #include <cstdint>
-#include "Engine/Plataforma/MouseBotones.hpp"
+#include "Engine/Plataforma/MouseBoton.hpp"
 #include "Engine/Plataforma/TecladoTecla.hpp"
 
 namespace GL

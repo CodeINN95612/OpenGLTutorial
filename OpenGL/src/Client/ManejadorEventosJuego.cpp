@@ -47,5 +47,5 @@ void ManejadorEventosJuego::EventoTecladoLiberarTecla(GL::TecladoTecla tecla) co
 
 void ManejadorEventosJuego::EventoTecladoEscribir(char* caracter) const
 {
-	GL_LOG_INFO("Escribio: {}", caracter);
+
 }

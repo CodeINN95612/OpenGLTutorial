@@ -52,7 +52,7 @@ namespace GL
         Caret = '^',
         GuionBajo = '_',
         ComillaAtras = '`',
-        Letra_A = 'a',
+        Letra_a = 'a',
         Letra_b = 'b',
         Letra_c = 'c',
         Letra_d = 'd',
@@ -120,5 +120,10 @@ namespace GL
         RSHIFT = GL_SCANCODE_TO_KEYCODE(229),
         RALT = GL_SCANCODE_TO_KEYCODE(230),
         RWIN = GL_SCANCODE_TO_KEYCODE(231),
+
+        Derecha = GL_SCANCODE_TO_KEYCODE(79),
+        Izquierda = GL_SCANCODE_TO_KEYCODE(80),
+        Abajo = GL_SCANCODE_TO_KEYCODE(81),
+        Arriba = GL_SCANCODE_TO_KEYCODE(82),
 	};
 }

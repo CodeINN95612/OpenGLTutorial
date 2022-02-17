@@ -4,8 +4,9 @@
 
 /*TODO:
 
-Camaras => Renderizador
+----Camaras
 Entradas de Usuario
+Renderizador
 Objetos de Juego (GameObjetcs)
 Escenas
 Sistemas

@@ -12,8 +12,9 @@
 #include "Plataforma/Assert.hpp"
 #include "Plataforma/Logger.hpp"
 #include "Plataforma/Window.hpp"
-#include "Plataforma/MouseBotones.hpp"
+#include "Plataforma/MouseBoton.hpp"
 #include "Plataforma/TecladoTecla.hpp"
+#include "Plataforma/Input.hpp"
 
 //Excepciones
 #include "Excepciones/Excepcion.hpp"

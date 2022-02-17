@@ -90,6 +90,9 @@
     <ClCompile Include="src\Engine\Game\CamaraOrtografica.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Engine\Plataforma\Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Engine\Plataforma\Window.hpp">
@@ -131,7 +134,7 @@
     <ClInclude Include="src\Client\ManejadorEventosJuego.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\Plataforma\MouseBotones.hpp">
+    <ClInclude Include="src\Engine\Plataforma\MouseBoton.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\Plataforma\TecladoTecla.hpp">
@@ -183,6 +186,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\Game\CamaraOrtografica.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Plataforma\Input.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

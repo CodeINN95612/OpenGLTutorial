@@ -3,7 +3,7 @@
 #include "Engine/Renderizador/Renderizador.hpp"
 #include "Engine/Eventos/IManejadorDeEventos.hpp"
 
-#include "Engine/Plataforma/MouseBotones.hpp"
+#include "Engine/Plataforma/MouseBoton.hpp"
 
 #include <cstdint>
 #include <memory>

@@ -2,6 +2,7 @@
 #include "Engine/Plataforma/Assert.hpp"
 #include "Logger.hpp"
 #include "Engine/Gui/Gui.hpp"
+#include "Input.hpp"
 
 #include <glad/glad.h>
 #include <SDL/SDL.h>
@@ -104,10 +105,12 @@ namespace GL
 				break;
 
 			case SDL_MOUSEBUTTONDOWN:
+				Input::SetEstadoMouse(e.button.button, true);
 				manejadorEventos.EventoMousePresionarBoton(e.button.x, e.button.y, e.button.clicks, (MouseBoton)e.button.button);
 				break;
 
 			case SDL_MOUSEBUTTONUP:
+				Input::SetEstadoMouse(e.button.button, false);
 				manejadorEventos.EventoMouseLiberarBoton(e.button.x, e.button.y, (MouseBoton)e.button.button);
 				break;
 
@@ -117,10 +120,12 @@ namespace GL
 
 			//Teclado
 			case SDL_KEYDOWN :
+				Input::SetEstadoTeclado(e.key.keysym.sym, true);
 				manejadorEventos.EventoTecladoPresionarTecla((TecladoTecla)e.key.keysym.sym, e.key.repeat);
 				break;
 
 			case SDL_KEYUP :
+				Input::SetEstadoTeclado(e.key.keysym.sym, false);
 				manejadorEventos.EventoTecladoLiberarTecla((TecladoTecla)e.key.keysym.sym);
 				break;
 

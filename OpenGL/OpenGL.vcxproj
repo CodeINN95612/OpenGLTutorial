@@ -105,6 +105,7 @@
     <ClCompile Include="src\Engine\Libs\stb_image\stb_image.cpp" />
     <ClCompile Include="src\Client\Game.cpp" />
     <ClCompile Include="src\Client\main.cpp" />
+    <ClCompile Include="src\Engine\Plataforma\Input.cpp" />
     <ClCompile Include="src\Engine\Plataforma\Logger.cpp" />
     <ClCompile Include="src\Engine\Renderizador\Imagen.cpp" />
     <ClCompile Include="src\Engine\Renderizador\IndexBuffer.cpp" />
@@ -163,11 +164,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="src\Engine\Plataforma\Input.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="src\Engine\Plataforma\Logger.hpp">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="src\Engine\Plataforma\MouseBotones.hpp">
+    <ClInclude Include="src\Engine\Plataforma\MouseBoton.hpp">
       <SubType>
       </SubType>
     </ClInclude>

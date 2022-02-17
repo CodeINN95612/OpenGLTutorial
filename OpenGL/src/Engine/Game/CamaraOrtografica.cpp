@@ -1,4 +1,5 @@
 #include "CamaraOrtografica.hpp"
+#include "Engine/Plataforma/Input.hpp"
 
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -16,12 +17,16 @@ namespace GL
 
 	void CamaraOrtografica::Actualizar()
 	{
-		static float an = 0.0f;
-		//m_Posicion.x = glm::sin(glm::radians(an)) * m_Ancho / 4.0f;
-		//m_Posicion.y = glm::cos(glm::radians(an)) * m_Alto / 4.0f;
+		if(Input::GetEstadoTeclado(TecladoTecla::Derecha))
+			m_Posicion.x++;
+		if (Input::GetEstadoTeclado(TecladoTecla::Izquierda))
+			m_Posicion.x--;
+		if (Input::GetEstadoTeclado(TecladoTecla::Arriba))
+			m_Posicion.y++;
+		if (Input::GetEstadoTeclado(TecladoTecla::Abajo))
+			m_Posicion.y--;
 		
 		ActualizarVista();
-		an++;
 	}
 
 	void CamaraOrtografica::CambioDimensiones(uint32_t ancho, uint32_t alto)
