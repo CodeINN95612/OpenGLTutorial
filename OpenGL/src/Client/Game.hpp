@@ -28,15 +28,17 @@ private:
 
 	std::unique_ptr<GL::Renderizador> m_Renderizador{};
 
-	std::shared_ptr<GL::Textura> m_Textura;
-	std::shared_ptr<GL::Textura> m_TexturaVentana;
-	std::shared_ptr<GL::Shader> m_Shader;
-	std::unique_ptr<GL::VertexArray> m_VertexArray;
-
-	//Variables de Juego
 	GL::CamaraOrtografica m_Camara{ Ancho / 3.0f, Alto / 3.0f, {0.0f, 0.0f, -10.0f} };
 	glm::vec4 ColorLimpieza{ 0.1f, 0.1f, 0.1f, 1.0f};
-	float m_Escala = 1.0f;
+
+	glm::vec2 posCuad{ 0.0f, 0.0f };
+	glm::vec2 sclCuad{ 1.0f, 1.0f };
+	glm::vec4 colCuad = GL::Color::Vec::Blanco;
+
+
+	glm::vec2 posCuad2{ 0.0f, 0.0f };
+	glm::vec2 sclCuad2{ 1.0f, 1.0f };
+	glm::vec4 colCuad2 = GL::Color::Vec::Gris50;
 
 private:
 	void ManejarEntradaDeUsuario();
