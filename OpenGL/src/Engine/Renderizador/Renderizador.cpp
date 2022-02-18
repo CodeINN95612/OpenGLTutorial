@@ -102,6 +102,15 @@ namespace GL
 		m_CuadTextura->Bind(0);
 		Dibujar(m_CuadVertexArray.get());
 	}
+	void Renderizador::Cuad(TransformComponent2D& transform)
+	{
+		m_CuadShader->Uniform4f("uColor", Color::Vec::Cyan);
+		m_CuadShader->UniformMat4("uMVP", m_MatrizVistaProyeccion * transform.mat4());
+
+		m_CuadVertexArray->Bind();
+		m_CuadTextura->Bind(0);
+		Dibujar(m_CuadVertexArray.get());
+	}
 }
 
 void ManejadorDeErrores(GLenum src, GLenum type, GLuint id, GLenum severity, GLsizei length, GLchar const* msg, void const* user_param)

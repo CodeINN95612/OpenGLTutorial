@@ -134,6 +134,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="src\Engine\Game\Componentes.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Game\ObjetoJuego.hpp">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="src\Engine\Gui\Gui.hpp">
       <SubType>
       </SubType>

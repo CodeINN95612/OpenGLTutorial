@@ -5,6 +5,8 @@
 #include "Textura.hpp"
 #include "Color.hpp"
 
+#include "Engine/Game/Componentes.hpp"
+
 #include <glm/glm.hpp>
 
 namespace GL
@@ -29,6 +31,7 @@ namespace GL
 
 		//Metodos
 		void Cuad(glm::vec2 pos, glm::vec2 escala, glm::vec4 color);
+		void Cuad(TransformComponent2D& tranform);
 
 	private:
 		std::shared_ptr<Shader> m_CuadShader{};

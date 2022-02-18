@@ -8,9 +8,11 @@
 --Entradas de Usuario
 --Color
 --Renderizador
-Objetos de Juego (GameObjetcs)
-Escenas
+--Objetos de Juego (GameObjetcs)
+
+
 Sistemas
+Escenas
 etc....
 
 */
@@ -22,6 +24,15 @@ Game::Game() :
 	m_Window = std::make_unique<GL::Window>(Nombre, Ancho, Alto);
 
 	m_Renderizador = m_Window->CrearRenderizador();
+
+	for (int i = 0; i < 10; i++)
+	{
+		GL::ObjetoJuego nuevo = GL::ObjetoJuego::Crear();
+		nuevo.tranform.posicion = { i * 15, i * 15 };
+		nuevo.tranform.escala = { (i + 1.0f) / 10.0f, (i + 1.0f) / 10.0f };
+		nuevo.tranform.anguloRotacion = i * 36.0f;
+		m_Objetos.push_back(nuevo);
+	}
 }
 
 Game::~Game()
@@ -64,19 +75,16 @@ void Game::Actualizar()
 {
 	m_Camara.Actualizar();
 
-	if(GL::Input::GetEstadoTeclado(GL::TecladoTecla::Letra_d))
-		posCuad2.x++;
-	if (GL::Input::GetEstadoTeclado(GL::TecladoTecla::Letra_a))
-		posCuad2.x--;
-
 }
 
 void Game::Renderizar()
 {
 	m_Renderizador->Empezar(m_Camara);
 
-	m_Renderizador->Cuad(posCuad, sclCuad, colCuad);
-	m_Renderizador->Cuad(posCuad2, sclCuad2, colCuad2);
+	for (GL::ObjetoJuego objeto : m_Objetos)
+	{
+		m_Renderizador->Cuad(objeto.tranform);
+	}
 
 	m_Renderizador->Terminar();
 }
@@ -87,10 +95,10 @@ void Game::RenderizarGui()
 	ImGui::ColorEdit3("Color Fondo", glm::value_ptr(ColorLimpieza));
 	ImGui::End();
 
-	ImGui::Begin("Cuad");
-	ImGui::Separator();
-	ImGui::DragFloat2("Pos", glm::value_ptr(posCuad), 1.0f, -500.0f, 500.0f);
-	ImGui::DragFloat2("Escala", glm::value_ptr(sclCuad), 0.1f, 0.5f, 3.0f);
-	ImGui::ColorEdit4("Color", glm::value_ptr(colCuad));
+	ImGui::Begin("Objetos");
+	for (GL::ObjetoJuego& objeto : m_Objetos)
+	{
+		ImGui::Text("%i", objeto.uuid);
+	}
 	ImGui::End();
 }

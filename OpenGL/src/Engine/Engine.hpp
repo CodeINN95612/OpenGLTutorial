@@ -35,3 +35,4 @@
 
 //Game
 #include "Engine/Game/CamaraOrtografica.hpp"
+#include "Engine/Game/ObjetoJuego.hpp"
