@@ -23,6 +23,7 @@ Game::Game() :
 	m_Renderizador = m_Window->CrearRenderizador();
 
 	m_Textura = GL::Textura::DesdeArchivo("./assets/img/peloNaranja16x16.png");
+	//m_Textura = GL::Textura::DesdeColor(GL::Color::Hex::Magenta);
 	m_TexturaVentana = GL::Textura::DesdeArchivo("./assets/img/ventana16x16.png");
 
 	m_Shader = GL::Shader::DesdeArchivo("./assets/shaders/Basic.vert", "./assets/shaders/Basic.frag");
@@ -107,7 +108,7 @@ void Game::Renderizar()
 	m_Renderizador->Dibujar(m_VertexArray.get());
 
 	m_TexturaVentana->Bind(0);
-	m_Renderizador->Dibujar(m_VertexArray.get());
+	//m_Renderizador->Dibujar(m_VertexArray.get());
 	////////////////////
 
 }

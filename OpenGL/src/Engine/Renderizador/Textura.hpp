@@ -18,6 +18,7 @@ namespace GL
 		Textura& operator==(const Textura& other) = delete;
 
 		static std::shared_ptr<Textura> DesdeArchivo(const char* archivo, glm::vec2 pos = { 0.0f, 0.0f }, glm::vec2 dim = { 0.0f, 0.0f });
+		static std::shared_ptr<Textura> DesdeColor(uint32_t color);
 
 		void Bind(uint32_t espacio);
 

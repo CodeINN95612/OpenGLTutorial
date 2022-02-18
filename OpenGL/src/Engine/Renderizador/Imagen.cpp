@@ -34,4 +34,11 @@ namespace GL
 
 		return img;
 	}
+	std::shared_ptr<Imagen> Imagen::DesdeColor(uint32_t color)
+	{
+		int32_t ancho = 1;
+		int32_t alto = 1;
+		Canal canal = Canal::RGBA;
+		return std::make_shared<Imagen>(ancho, alto, &color, ancho * alto * (uint8_t)canal, canal);
+	}
 }

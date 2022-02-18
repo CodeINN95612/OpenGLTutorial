@@ -33,6 +33,12 @@ namespace GL
 		return std::make_shared<Textura>(imagen, pos, dim);
 	}
 
+	std::shared_ptr<Textura> Textura::DesdeColor(uint32_t color)
+	{
+		std::shared_ptr<Imagen> imagen = Imagen::DesdeColor(color);
+		return std::make_shared<Textura>(imagen, glm::vec2{ 0.0f, 0.0f }, glm::vec2{(float)imagen->GetAncho(), (float)imagen->GetAlto()});
+	}
+
 	void Textura::Bind(uint32_t espacio)
 	{
 		glBindTextureUnit(espacio, m_Objeto);

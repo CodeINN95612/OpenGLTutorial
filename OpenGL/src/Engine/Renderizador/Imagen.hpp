@@ -24,6 +24,7 @@ namespace GL
 		Imagen& operator==(const Imagen& other) = delete;
 
 		static std::shared_ptr<Imagen> DesdeArchivo(const char* archivo, bool flipY = false);
+		static std::shared_ptr<Imagen> DesdeColor(uint32_t color);
 
 		inline Canal GetCanal() const { return m_Canal; }
 		inline uint32_t GetAlto() const { return m_Alto; }
