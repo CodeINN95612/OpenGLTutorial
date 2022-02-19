@@ -31,7 +31,7 @@ namespace GL
 
 		//Metodos
 		void Cuad(glm::vec2 pos, glm::vec2 escala, glm::vec4 color);
-		void Cuad(TransformComponent2D& tranform);
+		void Cuad(ComponenteTransform2D& transform, ComponenteSprite& sprite);
 
 	private:
 		std::shared_ptr<Shader> m_CuadShader{};

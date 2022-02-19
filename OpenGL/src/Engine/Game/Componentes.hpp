@@ -3,9 +3,12 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
+//Temporal
+#include <string>
+
 namespace GL
 {
-	struct TransformComponent2D
+	struct ComponenteTransform2D
 	{
 		glm::vec2 posicion{0.0f, 0.0f};
 		glm::vec2 escala{1.0f, 1.0f};
@@ -26,5 +29,15 @@ namespace GL
 
 			return resultado;
 		}
+	};
+
+	struct ComponenteEtiqueta 
+	{
+		std::string etiqueta;
+	};
+
+	struct ComponenteSprite
+	{
+		glm::vec4 color;
 	};
 }

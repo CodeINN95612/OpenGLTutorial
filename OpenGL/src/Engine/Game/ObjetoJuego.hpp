@@ -13,7 +13,10 @@ namespace GL
 
 	public:
 		UUID uuid;
-		TransformComponent2D tranform{};
+
+		ComponenteEtiqueta etiqueta{};
+		ComponenteTransform2D tranform{};
+		ComponenteSprite sprite{};
 
 	public:
 		ObjetoJuego(UUID uuid) : uuid(uuid) {};

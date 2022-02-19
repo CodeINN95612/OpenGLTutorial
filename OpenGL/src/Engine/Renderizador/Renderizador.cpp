@@ -102,9 +102,9 @@ namespace GL
 		m_CuadTextura->Bind(0);
 		Dibujar(m_CuadVertexArray.get());
 	}
-	void Renderizador::Cuad(TransformComponent2D& transform)
+	void Renderizador::Cuad(ComponenteTransform2D& transform, ComponenteSprite& sprite)
 	{
-		m_CuadShader->Uniform4f("uColor", Color::Vec::Cyan);
+		m_CuadShader->Uniform4f("uColor", sprite.color);
 		m_CuadShader->UniformMat4("uMVP", m_MatrizVistaProyeccion * transform.mat4());
 
 		m_CuadVertexArray->Bind();

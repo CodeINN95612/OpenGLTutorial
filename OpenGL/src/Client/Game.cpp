@@ -28,9 +28,13 @@ Game::Game() :
 	for (int i = 0; i < 10; i++)
 	{
 		GL::ObjetoJuego nuevo = GL::ObjetoJuego::Crear();
+		nuevo.etiqueta.etiqueta = "Objeto No. " + std::to_string(i);
+
 		nuevo.tranform.posicion = { i * 15, i * 15 };
 		nuevo.tranform.escala = { (i + 1.0f) / 10.0f, (i + 1.0f) / 10.0f };
 		nuevo.tranform.anguloRotacion = i * 36.0f;
+
+		nuevo.sprite.color = glm::vec4(i * 0.1f, 0.5f, 0.5f, 1.0f);
 		m_Objetos.push_back(nuevo);
 	}
 }
@@ -83,7 +87,7 @@ void Game::Renderizar()
 
 	for (GL::ObjetoJuego objeto : m_Objetos)
 	{
-		m_Renderizador->Cuad(objeto.tranform);
+		m_Renderizador->Cuad(objeto.tranform, objeto.sprite);
 	}
 
 	m_Renderizador->Terminar();
@@ -98,7 +102,7 @@ void Game::RenderizarGui()
 	ImGui::Begin("Objetos");
 	for (GL::ObjetoJuego& objeto : m_Objetos)
 	{
-		ImGui::Text("%i", objeto.uuid);
+		ImGui::Text("Objeto %i:, %s", objeto.uuid, objeto.etiqueta.etiqueta.c_str());
 	}
 	ImGui::End();
 }
