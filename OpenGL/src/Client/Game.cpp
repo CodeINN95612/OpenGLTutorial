@@ -23,7 +23,7 @@ glm::vec4 hsv2rgb(float inh, float ins, float inv)
 	long        i;
 	glm::vec4 out = {0.0f, 0.0f, 0.0f, 1.0f};
 
-	if (ins <= 0.0) {       // < is bogus, just shuts up warnings
+	if (ins <= 0.0) {
 		out.r = inv;
 		out.g = inv;
 		out.b = inv;
@@ -96,6 +96,8 @@ void Game::Run()
 
 	while (m_Window->Corriendo())
 	{
+		m_AdministradorFps.EmpezarFrame();
+
 		m_Renderizador->LimpiarPantalla(ColorLimpieza);
 
 		ManejarEntradaDeUsuario();
@@ -109,6 +111,8 @@ void Game::Run()
 		GL::Gui::TerminarFrame();
 
 		m_Window->Cambiar();
+
+		m_AdministradorFps.TerminarFrame();
 	}
 }
 

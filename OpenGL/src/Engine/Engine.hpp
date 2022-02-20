@@ -15,6 +15,7 @@
 #include "Plataforma/MouseBoton.hpp"
 #include "Plataforma/TecladoTecla.hpp"
 #include "Plataforma/Input.hpp"
+#include "Plataforma/AdministradorFPS.hpp"
 
 //Excepciones
 #include "Excepciones/Excepcion.hpp"

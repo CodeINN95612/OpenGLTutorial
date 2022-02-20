@@ -23,7 +23,7 @@ namespace GL
 
 		GL_ASSERT(m_OpenGLContext, "No se creo el contexto de OpenGL");
 
-		SDL_GL_SetSwapInterval(1);
+		//SDL_GL_SetSwapInterval(1);
 
 		SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
