@@ -9,7 +9,7 @@
 
 namespace GL
 {
-	static void GestinarEvento(SDL_Event& e, const IManejadorDeEventos& manejadorEventos);
+	static void GestinarEvento(SDL_Event& e, const IManejadorDeEventos& manejadorEventos, bool bloqueaMouseTeclado);
 
 	Window::Window(const char* nombre, uint32_t width, uint32_t height)
 	{
@@ -52,8 +52,8 @@ namespace GL
 		SDL_Event e;
 		while (SDL_PollEvent(&e) != 0)
 		{
-			Gui::ManejarEventos(&e);
-			GestinarEvento(e, manejadorEventos);
+			bool bloqueo = Gui::ManejarEventos(&e);
+			GestinarEvento(e, manejadorEventos, bloqueo);
 		}
 	}
 
@@ -68,8 +68,20 @@ namespace GL
 	}
 
 	//Eventos
-	void GestinarEvento(SDL_Event& e, const IManejadorDeEventos& manejadorEventos)
+	void GestinarEvento(SDL_Event& e, const IManejadorDeEventos& manejadorEventos, bool bloqueaMouseTeclado)
 	{
+		switch (e.type)
+		{
+			case SDL_MOUSEMOTION:
+			case SDL_MOUSEBUTTONDOWN:
+			case SDL_MOUSEBUTTONUP:
+			case SDL_MOUSEWHEEL:
+			case SDL_KEYDOWN:
+			case SDL_KEYUP:
+			case SDL_TEXTINPUT:
+				if (bloqueaMouseTeclado) return;
+		}
+
 		switch (e.type)
 		{
 			//Ventana

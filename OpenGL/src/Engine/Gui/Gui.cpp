@@ -75,8 +75,11 @@ namespace GL
 		}
 	}
 
-	void Gui::ManejarEventos(void* sdlEvent)
+	bool Gui::ManejarEventos(void* sdlEvent)
 	{
+		ImGuiIO& io = ImGui::GetIO();
+		bool bloqueo = io.WantCaptureMouse || io.WantCaptureKeyboard;
 		ImGui_ImplSDL2_ProcessEvent((SDL_Event*)sdlEvent);
+		return bloqueo;
 	}
 }

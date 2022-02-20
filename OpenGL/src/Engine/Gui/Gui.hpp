@@ -15,6 +15,6 @@ namespace GL
 		static void EmpezarFrame();
 		static void TerminarFrame();
 
-		static void ManejarEventos(void* sdlEvent);
+		static bool ManejarEventos(void* sdlEvent);
 	};
 }
