@@ -17,7 +17,7 @@ void ManejadorEventosJuego::EventoPantallaCambiarDimension(int32_t ancho, int32_
 	if (ancho != 0 && alto != 0)
 	{
 		m_Juego.m_Renderizador->Viewport(0, 0, ancho, alto);
-		m_Juego.m_Camara.CambioDimensiones(ancho/3.0f, alto/3.0f);
+		m_Juego.m_Camara.CambioDimensiones(float(ancho), float(alto));
 	}
 }
 

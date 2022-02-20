@@ -5,7 +5,7 @@
 
 namespace GL
 {
-	CamaraOrtografica::CamaraOrtografica(uint32_t ancho, uint32_t alto, glm::vec3 posicion) :
+	CamaraOrtografica::CamaraOrtografica(float ancho, float alto, glm::vec3 posicion) :
 		m_Ancho(ancho), m_Alto(alto), m_Posicion(posicion), m_Arriba(0.0f, 1.0f, 0.0f), m_Offset(0.0f, 0.0f, 1.0f)
 	{ 
 		ActualizarMatrices();
@@ -18,18 +18,18 @@ namespace GL
 	void CamaraOrtografica::Actualizar()
 	{
 		if(Input::GetEstadoTeclado(TecladoTecla::Derecha))
-			m_Posicion.x++;
+			m_Posicion.x+=5;
 		if (Input::GetEstadoTeclado(TecladoTecla::Izquierda))
-			m_Posicion.x--;
+			m_Posicion.x-= 5;
 		if (Input::GetEstadoTeclado(TecladoTecla::Arriba))
-			m_Posicion.y++;
+			m_Posicion.y+= 5;
 		if (Input::GetEstadoTeclado(TecladoTecla::Abajo))
-			m_Posicion.y--;
+			m_Posicion.y-= 5;
 		
 		ActualizarVista();
 	}
 
-	void CamaraOrtografica::CambioDimensiones(uint32_t ancho, uint32_t alto)
+	void CamaraOrtografica::CambioDimensiones(float ancho, float alto)
 	{
 		m_Ancho = ancho;
 		m_Alto = alto;

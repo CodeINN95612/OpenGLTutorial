@@ -27,11 +27,11 @@ private:
 	std::unique_ptr<GL::Window> m_Window{};
 	ManejadorEventosJuego m_ManejadorDeEventos;
 
-	GL::AdministradorFPS m_AdministradorFps{ 30 };
+	GL::AdministradorFPS m_AdministradorFps{ 60 };
 
 	std::unique_ptr<GL::Renderizador> m_Renderizador{};
 
-	GL::CamaraOrtografica m_Camara{ Ancho / 3.0f, Alto / 3.0f, {0.0f, 0.0f, -10.0f} };
+	GL::CamaraOrtografica m_Camara{ float(Ancho), float(Alto), {0.0f, 0.0f, -10.0f} };
 	glm::vec4 ColorLimpieza{ 0.0f, 0.0f, 0.0f, 1.0f};
 
 	std::vector<GL::ObjetoJuego> m_Objetos{};

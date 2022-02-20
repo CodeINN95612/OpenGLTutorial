@@ -9,7 +9,7 @@ out vec2 iTexCoords;
 
 void main(){
 
-	gl_Position = uMVP * vec4(vPosition * 10.0f, 1.0f, 1.0f);
+	gl_Position = uMVP * vec4(vPosition * 50.0f, 1.0f, 1.0f);
 	iTexCoords = vTexCoords;
 
 };
