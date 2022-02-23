@@ -19,6 +19,7 @@ namespace GL
 		ComponenteSprite sprite{};
 
 	public:
+		//ObjetoJuego() {};
 		ObjetoJuego(UUID uuid) : uuid(uuid) {};
 		virtual ~ObjetoJuego() = default;
 

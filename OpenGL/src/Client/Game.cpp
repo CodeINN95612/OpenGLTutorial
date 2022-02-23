@@ -9,11 +9,8 @@ Game::Game() :
 
 	m_Renderizador = m_Window->CrearRenderizador();
 
-	GL::ObjetoJuego jugador = GL::ObjetoJuego::Crear();
-	jugador.etiqueta.etiqueta = "Jugador";
-	jugador.sprite.color = GL::Color::Vec::Rojo;
-
-	m_Objetos.push_back(jugador);
+	m_Jugador.etiqueta.etiqueta = "Jugador";
+	m_Jugador.sprite.color = GL::Color::Vec::Rojo;
 }
 
 Game::~Game()
@@ -51,19 +48,52 @@ void Game::Run()
 void Game::ManejarEntradaDeUsuario()
 {
 	m_Window->ManejarEventos(m_ManejadorDeEventos);
-
-	//si aplasto arriba, subir x
-
 }
 
 void Game::Actualizar()
 {
 	m_Camara.Actualizar();
+
+	m_Jugador.tranform.posicion.y -= velV;
+	if (m_Jugador.tranform.posicion.y < -150.0f)
+	{
+		velV = 0;
+		m_Jugador.tranform.posicion.y = -150.0f;
+	}
+	else
+	{
+		velV += g;
+	}
+
+	if(m_Jugador.tranform.posicion.y > -150.0f)
+		enSuelo = false;
+	else
+		enSuelo = true;
+
+		
+
+	if(GL::Input::GetEstadoTeclado(GL::TecladoTecla::Letra_d))
+		m_Jugador.tranform.posicion.x += velH;
+	if (GL::Input::GetEstadoTeclado(GL::TecladoTecla::Letra_a))
+		m_Jugador.tranform.posicion.x -= velH;
+
+	if (GL::Input::GetEstadoTeclado(GL::TecladoTecla::Letra_w))
+	{
+		if(!salto && enSuelo)
+			velV = -25;
+		salto = true;
+	}
+	else
+		salto = false;
+
+
 }
 
 void Game::Renderizar()
 {
 	m_Renderizador->Empezar(m_Camara);
+
+	m_Renderizador->Cuad(m_Jugador.tranform, m_Jugador.sprite);
 
 	for (GL::ObjetoJuego objeto : m_Objetos)
 	{

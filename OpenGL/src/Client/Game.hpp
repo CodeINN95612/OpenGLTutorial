@@ -35,6 +35,13 @@ private:
 	glm::vec4 ColorLimpieza{ 0.0f, 0.0f, 0.0f, 1.0f};
 
 	std::vector<GL::ObjetoJuego> m_Objetos{};
+	GL::ObjetoJuego m_Jugador = GL::ObjetoJuego::Crear();
+	float velH = 15.0f;
+	float velV = 0.0f;
+	float g = 3.0f;
+	bool salto = false;
+	bool enSuelo = false;
+
 
 private:
 	void ManejarEntradaDeUsuario();
