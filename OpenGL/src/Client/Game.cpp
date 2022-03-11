@@ -15,7 +15,7 @@ Game::Game() :
 	m_Jugador.etiqueta.etiqueta = "Jugador";
 	m_Jugador.sprite.nombreTextura = "PeloNaranja";
 
-	for (int i = -100; i < 200; i++)
+	for (int i = -100; i < 100; i++)
 	{
 		GL::ObjetoJuego obj = GL::ObjetoJuego::Crear();
 		obj.etiqueta.etiqueta = "Objeto" + std::to_string(i);
@@ -54,7 +54,8 @@ void Game::Run()
 
 		m_Window->Cambiar();
 
-		m_AdministradorFps.TerminarFrame();
+		double fps = m_AdministradorFps.TerminarFrame();
+		GL_LOG_INFO("FPS: {}", fps);
 	}
 }
 
