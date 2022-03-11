@@ -1,5 +1,6 @@
 #include "Renderizador.hpp"
 #include "Engine/Plataforma/Logger.hpp"
+#include "AdministradorRecursos.hpp"
 
 #include <glad/glad.h>
 #include <glm/gtc/matrix_transform.hpp>
@@ -26,11 +27,10 @@ namespace GL
 		glEnable(GL_BLEND);
 
 		//Datos
-		m_CuadTextura = Textura::DesdeColor(GL::Color::Hex::Blanco);
+		AdministradorRecursos::CargarTextura("TexturaDefecto", Textura::DesdeColor(GL::Color::Hex::Blanco));
 
-		m_CuadShader = GL::Shader::DesdeArchivo("./assets/shaders/Basic.vert", "./assets/shaders/Basic.frag");
-		m_CuadShader->UniformTextura("uTextura", 0);
-
+		AdministradorRecursos::CargarShader("Basico", GL::Shader::DesdeArchivo("./assets/shaders/Basic.vert", "./assets/shaders/Basic.frag"));
+		
 		float vertices[] = {
 			-0.5f,  0.5f, 0.0f, 1.0f,
 			-0.5f, -0.5f, 0.0f, 0.0f,
@@ -89,26 +89,21 @@ namespace GL
 
 	}
 
-	void Renderizador::Cuad(glm::vec2 pos, glm::vec2 escala, glm::vec4 color)
-	{
-		glm::mat4 model{1.0f};
-		model = glm::translate(model, { pos.x, pos.y, 0.0 });
-		model = glm::scale(model, { escala.x, escala.y, 1.0 });
-
-		m_CuadShader->Uniform4f("uColor", color);
-		m_CuadShader->UniformMat4("uMVP", m_MatrizVistaProyeccion * model);
-
-		m_CuadVertexArray->Bind();
-		m_CuadTextura->Bind(0);
-		Dibujar(m_CuadVertexArray.get());
-	}
 	void Renderizador::Cuad(ComponenteTransform2D& transform, ComponenteSprite& sprite)
 	{
-		m_CuadShader->Uniform4f("uColor", sprite.color);
-		m_CuadShader->UniformMat4("uMVP", m_MatrizVistaProyeccion * transform.mat4());
+		std::shared_ptr<Shader>& shader = AdministradorRecursos::ObtenerShader("Basico");
+		shader->UniformMat4("uMVP", m_MatrizVistaProyeccion * transform.mat4());
+		shader->Uniform4f("uColor", sprite.color);
+		shader->UniformTextura("uTextura", 0);
 
 		m_CuadVertexArray->Bind();
-		m_CuadTextura->Bind(0);
+
+		std::shared_ptr<Textura>& textura = AdministradorRecursos::ObtenerTextura("TexturaDefecto");
+		if(AdministradorRecursos::TieneTextura(sprite.nombreTextura))
+			textura = AdministradorRecursos::ObtenerTextura(sprite.nombreTextura);
+
+		textura->Bind(0);
+
 		Dibujar(m_CuadVertexArray.get());
 	}
 }

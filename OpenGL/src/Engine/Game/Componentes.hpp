@@ -33,11 +33,12 @@ namespace GL
 
 	struct ComponenteEtiqueta 
 	{
-		std::string etiqueta;
+		std::string etiqueta{};
 	};
 
 	struct ComponenteSprite
 	{
-		glm::vec4 color;
+		glm::vec4 color{1.0f, 1.0f, 1.0f, 1.0f};
+		std::string nombreTextura{};
 	};
 }

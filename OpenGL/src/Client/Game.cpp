@@ -9,8 +9,21 @@ Game::Game() :
 
 	m_Renderizador = m_Window->CrearRenderizador();
 
+	GL::AdministradorRecursos::CargarTextura("PeloNaranja", GL::Textura::DesdeArchivo("./assets/img/peloNaranja16x16.png"));
+	GL::AdministradorRecursos::CargarTextura("Suelo", GL::Textura::DesdeArchivo("./assets/img/ventana16x16.png"));
+
 	m_Jugador.etiqueta.etiqueta = "Jugador";
-	m_Jugador.sprite.color = GL::Color::Vec::Rojo;
+	m_Jugador.sprite.nombreTextura = "PeloNaranja";
+
+	for (int i = -100; i < 200; i++)
+	{
+		GL::ObjetoJuego obj = GL::ObjetoJuego::Crear();
+		obj.etiqueta.etiqueta = "Objeto" + std::to_string(i);
+		obj.tranform.posicion = { i * 50.0f, -200.0f };
+		obj.sprite.nombreTextura = "Suelo";
+
+		m_Objetos.push_back(obj);
+	}
 }
 
 Game::~Game()

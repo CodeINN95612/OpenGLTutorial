@@ -96,6 +96,9 @@
     <ClCompile Include="src\Engine\Plataforma\AdministradorFPS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Engine\Renderizador\AdministradorRecursos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Engine\Plataforma\Window.hpp">
@@ -204,6 +207,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\Plataforma\AdministradorFPS.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\Renderizador\AdministradorRecursos.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

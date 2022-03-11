@@ -29,6 +29,7 @@
 #include "Renderizador/Textura.hpp"
 #include "Renderizador/Renderizador.hpp"
 #include "Renderizador/Color.hpp"
+#include "Renderizador/AdministradorRecursos.hpp"
 
 //Gui
 #include "Engine/Libs/imgui/imgui.h"

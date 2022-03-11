@@ -30,12 +30,9 @@ namespace GL
 		void Terminar();
 
 		//Metodos
-		void Cuad(glm::vec2 pos, glm::vec2 escala, glm::vec4 color);
 		void Cuad(ComponenteTransform2D& transform, ComponenteSprite& sprite);
 
 	private:
-		std::shared_ptr<Shader> m_CuadShader{};
-		std::shared_ptr<Textura> m_CuadTextura{};
 		std::unique_ptr<VertexArray> m_CuadVertexArray{};
 
 		glm::mat4 m_MatrizVistaProyeccion{ 1.0f };

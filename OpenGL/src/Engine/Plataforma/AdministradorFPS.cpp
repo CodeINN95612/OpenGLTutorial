@@ -4,10 +4,10 @@
 
 namespace GL
 {
-	AdministradorFPS::AdministradorFPS(uint8_t fpsRequeridos) :
-		m_FpsRequeridos(fpsRequeridos), m_FrameEmpieza(0), m_TiempoFrame(0)
+	AdministradorFPS::AdministradorFPS(float fpsRequeridos) :
+		m_FpsRequeridos(fpsRequeridos), m_FrameEmpieza(0.0f), m_TiempoFrame(0.0f)
 	{
-		m_EspacioFrame = ValorMilisegundos / m_FpsRequeridos;
+		m_EspacioFrame = double(ValorMilisegundos / m_FpsRequeridos);
 	}
 
 	AdministradorFPS::~AdministradorFPS()
@@ -16,16 +16,19 @@ namespace GL
 
 	void AdministradorFPS::EmpezarFrame()
 	{
-		m_FrameEmpieza = SDL_GetTicks64();
+		m_FrameEmpieza = double(SDL_GetTicks64());
 	}
 
-	void AdministradorFPS::TerminarFrame()
+	double AdministradorFPS::TerminarFrame()
 	{
-		m_TiempoFrame = SDL_GetTicks64() - m_FrameEmpieza;
+		m_TiempoFrame = double(SDL_GetTicks64()) - m_FrameEmpieza;
 
 		if (m_TiempoFrame < m_EspacioFrame)
 		{
-			SDL_Delay(m_EspacioFrame - m_TiempoFrame);
+			SDL_Delay(uint32_t(m_EspacioFrame - m_TiempoFrame));
+			m_TiempoFrame = m_EspacioFrame;
 		}
+
+		return double(ValorMilisegundos / m_TiempoFrame);
 	}
 }

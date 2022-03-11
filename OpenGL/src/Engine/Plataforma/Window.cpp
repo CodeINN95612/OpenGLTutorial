@@ -74,10 +74,10 @@ namespace GL
 		{
 			case SDL_MOUSEMOTION:
 			case SDL_MOUSEBUTTONDOWN:
-			case SDL_MOUSEBUTTONUP:
+			//case SDL_MOUSEBUTTONUP:
 			case SDL_MOUSEWHEEL:
 			case SDL_KEYDOWN:
-			case SDL_KEYUP:
+			//case SDL_KEYUP:
 			case SDL_TEXTINPUT:
 				if (bloqueaMouseTeclado) return;
 		}

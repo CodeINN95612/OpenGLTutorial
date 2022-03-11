@@ -6,9 +6,9 @@ namespace GL
 	class AdministradorFPS
 	{
 	public:
-		static constexpr const uint32_t ValorMilisegundos = 1000; //Mil milisegundos = 1 segundo
+		static constexpr const float ValorMilisegundos = 1000.0f; //Mil milisegundos = 1 segundo
 	public:
-		AdministradorFPS(uint8_t fpsRequeridos);
+		AdministradorFPS(float fpsRequeridos);
 		virtual ~AdministradorFPS();
 
 		AdministradorFPS(const AdministradorFPS& other) = delete;
@@ -16,13 +16,13 @@ namespace GL
 
 		void EmpezarFrame();
 
-		void TerminarFrame();
+		double TerminarFrame();
 
 	private:
-		uint8_t m_FpsRequeridos;
-		uint32_t m_EspacioFrame;
+		float m_FpsRequeridos;
+		double m_EspacioFrame;
 
-		uint64_t m_FrameEmpieza;
-		uint32_t m_TiempoFrame;
+		double m_FrameEmpieza;
+		double m_TiempoFrame;
 	};
 }
