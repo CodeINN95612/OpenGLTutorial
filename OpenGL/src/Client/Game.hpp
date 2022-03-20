@@ -34,8 +34,8 @@ private:
 	GL::CamaraOrtografica m_Camara{ float(Ancho), float(Alto), {0.0f, 0.0f, -10.0f} };
 	glm::vec4 ColorLimpieza{ 0.0f, 0.0f, 0.0f, 1.0f};
 
-	std::vector<GL::ObjetoJuego> m_Objetos{};
-	GL::ObjetoJuego m_Jugador = GL::ObjetoJuego::Crear();
+	std::vector<std::shared_ptr<GL::ObjetoJuego>> m_Objetos{};
+	std::shared_ptr<GL::ObjetoJuego> m_Jugador = GL::ObjetoJuego::Crear("Jugador1");
 	float velH = 15.0f;
 	float velV = 0.0f;
 	float g = 3.0f;

@@ -8,9 +8,18 @@
 
 namespace GL
 {
-	struct ComponenteTransform2D
+	struct Componente 
 	{
-		glm::vec2 posicion{0.0f, 0.0f};
+		Componente() = default;
+		virtual ~Componente() = default;
+	};
+
+	struct ComponenteTransform2D : public Componente
+	{
+		ComponenteTransform2D(glm::vec2 posicion) : posicion(posicion) {}
+		virtual ~ComponenteTransform2D() = default;
+
+		glm::vec2 posicion;
 		glm::vec2 escala{1.0f, 1.0f};
 		float anguloRotacion = 0.0f;
 
@@ -31,13 +40,19 @@ namespace GL
 		}
 	};
 
-	struct ComponenteEtiqueta 
+	struct ComponenteEtiqueta : public Componente
 	{
-		std::string etiqueta{};
+		ComponenteEtiqueta(const std::string& etiqueta) : etiqueta(etiqueta) {}
+		virtual ~ComponenteEtiqueta() = default;
+
+		std::string etiqueta;
 	};
 
-	struct ComponenteSprite
+	struct ComponenteSprite : public Componente
 	{
+		ComponenteSprite() = default;
+		virtual ~ComponenteSprite() = default;
+
 		glm::vec4 color{1.0f, 1.0f, 1.0f, 1.0f};
 		std::string nombreTextura{};
 	};

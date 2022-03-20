@@ -12,15 +12,12 @@ Game::Game() :
 	GL::AdministradorRecursos::CargarTextura("PeloNaranja", GL::Textura::DesdeArchivo("./assets/img/peloNaranja16x16.png"));
 	GL::AdministradorRecursos::CargarTextura("Suelo", GL::Textura::DesdeArchivo("./assets/img/ventana16x16.png"));
 
-	m_Jugador.etiqueta.etiqueta = "Jugador";
-	m_Jugador.sprite.nombreTextura = "PeloNaranja";
+	m_Jugador->AgregarComponente<GL::ComponenteSprite>().nombreTextura = "PeloNaranja";
 
-	for (int i = -100; i < 100; i++)
+	for (int i = -20; i < 20; i++)
 	{
-		GL::ObjetoJuego obj = GL::ObjetoJuego::Crear();
-		obj.etiqueta.etiqueta = "Objeto" + std::to_string(i);
-		obj.tranform.posicion = { i * 50.0f, -200.0f };
-		obj.sprite.nombreTextura = "Suelo";
+		std::shared_ptr<GL::ObjetoJuego> obj = GL::ObjetoJuego::Crear("Objeto" + std::to_string(i), { i * 50.0f, -200.0f });
+		obj->AgregarComponente<GL::ComponenteSprite>().nombreTextura = "Suelo";
 
 		m_Objetos.push_back(obj);
 	}
@@ -68,18 +65,20 @@ void Game::Actualizar()
 {
 	m_Camara.Actualizar();
 
-	m_Jugador.tranform.posicion.y -= velV;
-	if (m_Jugador.tranform.posicion.y < -150.0f)
+	GL::ComponenteTransform2D& transform = m_Jugador->ObtenerComponente<GL::ComponenteTransform2D>();
+
+	transform.posicion.y -= velV;
+	if (transform.posicion.y < -150.0f)
 	{
 		velV = 0;
-		m_Jugador.tranform.posicion.y = -150.0f;
+		transform.posicion.y = -150.0f;
 	}
 	else
 	{
 		velV += g;
 	}
 
-	if(m_Jugador.tranform.posicion.y > -150.0f)
+	if(transform.posicion.y > -150.0f)
 		enSuelo = false;
 	else
 		enSuelo = true;
@@ -87,9 +86,9 @@ void Game::Actualizar()
 		
 
 	if(GL::Input::GetEstadoTeclado(GL::TecladoTecla::Letra_d))
-		m_Jugador.tranform.posicion.x += velH;
+		transform.posicion.x += velH;
 	if (GL::Input::GetEstadoTeclado(GL::TecladoTecla::Letra_a))
-		m_Jugador.tranform.posicion.x -= velH;
+		transform.posicion.x -= velH;
 
 	if (GL::Input::GetEstadoTeclado(GL::TecladoTecla::Letra_w))
 	{
@@ -107,11 +106,11 @@ void Game::Renderizar()
 {
 	m_Renderizador->Empezar(m_Camara);
 
-	m_Renderizador->Cuad(m_Jugador.tranform, m_Jugador.sprite);
+	m_Renderizador->Cuad(m_Jugador->ObtenerComponente<GL::ComponenteTransform2D>(), m_Jugador->ObtenerComponente<GL::ComponenteSprite>());
 
-	for (GL::ObjetoJuego objeto : m_Objetos)
+	for (std::shared_ptr<GL::ObjetoJuego>& objeto : m_Objetos)
 	{
-		m_Renderizador->Cuad(objeto.tranform, objeto.sprite);
+		m_Renderizador->Cuad(objeto->ObtenerComponente<GL::ComponenteTransform2D>(), objeto->ObtenerComponente<GL::ComponenteSprite>());
 	}
 
 	m_Renderizador->Terminar();
