@@ -73,6 +73,17 @@ namespace GL
 			delete componente;
 		}
 
+		
+		ComponenteTransform2D& Transform()
+		{
+			return ObtenerComponente<ComponenteTransform2D>();
+		}
+
+		ComponenteEtiqueta& Etiqueta()
+		{
+			return ObtenerComponente<ComponenteEtiqueta>();
+		}
+
 	private:
 		UUID uuid;
 		std::map<std::string, Componente*> m_Componentes;

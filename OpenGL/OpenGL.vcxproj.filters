@@ -212,6 +212,9 @@
     <ClInclude Include="src\Engine\Renderizador\AdministradorRecursos.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Client\Paneles\PanelObjetos.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\Basic.vert" />

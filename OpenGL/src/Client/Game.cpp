@@ -2,6 +2,8 @@
 
 #include <glm/glm.hpp>
 
+#include "Paneles/PanelObjetos.hpp"
+
 Game::Game() :
 	m_ManejadorDeEventos(*this)
 {
@@ -13,8 +15,9 @@ Game::Game() :
 	GL::AdministradorRecursos::CargarTextura("Suelo", GL::Textura::DesdeArchivo("./assets/img/ventana16x16.png"));
 
 	m_Jugador->AgregarComponente<GL::ComponenteSprite>().nombreTextura = "PeloNaranja";
+	m_Objetos.push_back(m_Jugador);
 
-	for (int i = -20; i < 20; i++)
+	for (int i = -10; i < 10; i++)
 	{
 		std::shared_ptr<GL::ObjetoJuego> obj = GL::ObjetoJuego::Crear("Objeto" + std::to_string(i), { i * 50.0f, -200.0f });
 		obj->AgregarComponente<GL::ComponenteSprite>().nombreTextura = "Suelo";
@@ -51,8 +54,7 @@ void Game::Run()
 
 		m_Window->Cambiar();
 
-		double fps = m_AdministradorFps.TerminarFrame();
-		GL_LOG_INFO("FPS: {}", fps);
+		m_FPS = (float)m_AdministradorFps.TerminarFrame();
 	}
 }
 
@@ -118,14 +120,10 @@ void Game::Renderizar()
 
 void Game::RenderizarGui()
 {
-	ImGui::Begin("Fondo");
-	ImGui::ColorEdit3("Color Fondo", glm::value_ptr(ColorLimpieza));
-	ImGui::End();
+	std::shared_ptr<GL::ObjetoJuego>& seleccionado = PanelObjetos::Render(m_Objetos);
 
-	/*ImGui::Begin("Objetos");
-	for (GL::ObjetoJuego& objeto : m_Objetos)
-	{
-		ImGui::Text("Objeto %i:, %s", objeto.uuid, objeto.etiqueta.etiqueta.c_str());
-	}
-	ImGui::End();*/
+	ImGui::Begin("Info");
+	ImGui::Text("Objeto Seleccionado: %s", seleccionado ? seleccionado->Etiqueta().etiqueta.c_str() : "");
+	ImGui::Text("Ejecutando a: %.2f fps", m_FPS);
+	ImGui::End();
 }

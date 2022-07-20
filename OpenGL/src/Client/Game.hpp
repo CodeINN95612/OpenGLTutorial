@@ -11,8 +11,8 @@ class Game
 	friend class ManejadorEventosJuego;
 public:
 	inline static constexpr const char* Nombre = "Juego de Prueba";
-	inline static constexpr const uint32_t Ancho = 800;
-	inline static constexpr const uint32_t Alto = 600;
+	inline static constexpr const uint32_t Ancho = 1000;
+	inline static constexpr const uint32_t Alto = 720;
 
 public:
 	Game();
@@ -32,7 +32,7 @@ private:
 	std::unique_ptr<GL::Renderizador> m_Renderizador{};
 
 	GL::CamaraOrtografica m_Camara{ float(Ancho), float(Alto), {0.0f, 0.0f, -10.0f} };
-	glm::vec4 ColorLimpieza{ 0.0f, 0.0f, 0.0f, 1.0f};
+	glm::vec4 ColorLimpieza{ 0.2f, 0.2f, 0.2f, 1.0f};
 
 	std::vector<std::shared_ptr<GL::ObjetoJuego>> m_Objetos{};
 	std::shared_ptr<GL::ObjetoJuego> m_Jugador = GL::ObjetoJuego::Crear("Jugador1");
@@ -42,6 +42,7 @@ private:
 	bool salto = false;
 	bool enSuelo = false;
 
+	float m_FPS = 60.0f;
 
 private:
 	void ManejarEntradaDeUsuario();
