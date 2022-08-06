@@ -1,11 +1,13 @@
 #include "Input.hpp"
 
+#include <glm/glm.hpp>
 #include <map>
 
 namespace GL
 {
 	static std::map <uint8_t, bool> s_EstadosMouse{};
 	static std::map <uint32_t, bool> s_EstadosTeclado{};
+	static glm::vec2 s_MousePos{};
 
 	/*void Input::Inicializar()
 	{
@@ -14,6 +16,10 @@ namespace GL
 	void Input::SetEstadoMouse(uint8_t btn, bool presionado)
 	{
 		s_EstadosMouse[btn] = presionado;
+	}
+	void Input::SetPosMouse(glm::vec2 pos)
+	{
+		s_MousePos = pos;
 	}
 
 	void Input::SetEstadoTeclado(uint32_t tecla, bool presionado)
@@ -27,6 +33,11 @@ namespace GL
 			return false;
 
 		return s_EstadosMouse[(uint8_t)btn];
+	}
+
+	glm::vec2 Input::GetPosMouse()
+	{
+		return s_MousePos;
 	}
 
 	bool Input::GetEstadoTeclado(TecladoTecla btn)

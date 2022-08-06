@@ -15,6 +15,7 @@ namespace GL
 
 		void Actualizar();
 		void CambioDimensiones(float ancho, float alto);
+		glm::vec2 MapearCoordenadas(glm::vec2 coords);
 
 		inline glm::mat4 GetMatrixVistaProyeccion() const { return m_MatrizProyeccion * m_MatrizVista; }
 

@@ -20,6 +20,8 @@ namespace GL
 		static std::shared_ptr<Textura>& CargarTextura(std::string nombre, std::shared_ptr<Textura> textura);
 		static std::shared_ptr<Textura>& ObtenerTextura(std::string nombre);
 
+		static std::shared_ptr<Textura>& RecargarTextura(std::string nombre, std::shared_ptr<Imagen> textura);
+
 	private:
 		static std::map<const std::string, std::shared_ptr<Shader>> s_Shaders;
 		static std::map<const std::string, std::shared_ptr<Textura>> s_Texturas;

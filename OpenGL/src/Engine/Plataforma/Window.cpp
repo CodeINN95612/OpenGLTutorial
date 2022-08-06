@@ -113,6 +113,7 @@ namespace GL
 
 			//Mouse
 			case SDL_MOUSEMOTION:
+				Input::SetPosMouse({ e.motion.x, e.motion.y });
 				manejadorEventos.EventoMouseMover(e.motion.x, e.motion.y);
 				break;
 

@@ -5,7 +5,7 @@
 
 void ManejadorEventosJuego::EventoPantallaCerrar() const
 {
-	m_Juego.m_Window->Cerrar();
+	m_Juego->m_Window->Cerrar();
 }
 
 void ManejadorEventosJuego::EventoPantallaMover(int32_t x, int32_t y) const
@@ -16,8 +16,8 @@ void ManejadorEventosJuego::EventoPantallaCambiarDimension(int32_t ancho, int32_
 {
 	if (ancho != 0 && alto != 0)
 	{
-		m_Juego.m_Renderizador->Viewport(0, 0, ancho, alto);
-		m_Juego.m_Camara.CambioDimensiones(float(ancho), float(alto));
+		m_Juego->m_Renderizador->Viewport(0, 0, ancho, alto);
+		m_Juego->m_Camara.CambioDimensiones(float(ancho), float(alto));
 	}
 }
 
@@ -27,6 +27,9 @@ void ManejadorEventosJuego::EventoMouseMover(int32_t x, int32_t y) const
 
 void ManejadorEventosJuego::EventoMousePresionarBoton(int32_t x, int32_t y, uint8_t clicks, GL::MouseBoton boton) const
 {
+	/*glm::vec2 coords = m_Juego.m_Camara.MapearCoordenadas({ x, y });
+	m_Juego.m_Objetos.push_back(GL::ObjetoJuego::Crear("ObjetoNuevo", coords));;*/
+	//m_Juego->ImageBuffer[x + y * m_Juego->Ancho] = 0xffffff00;
 }
 
 void ManejadorEventosJuego::EventoMouseLiberarBoton(int32_t x, int32_t y, GL::MouseBoton boton) const

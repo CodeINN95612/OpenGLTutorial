@@ -39,6 +39,17 @@ namespace GL
 		return std::make_shared<Textura>(imagen, glm::vec2{ 0.0f, 0.0f }, glm::vec2{(float)imagen->GetAncho(), (float)imagen->GetAlto()});
 	}
 
+	std::shared_ptr<Textura> Textura::DesdeImagen(const std::shared_ptr<Imagen>& imagen)
+	{
+		return std::make_shared<Textura>(imagen, glm::vec2{ 0.0f, 0.0f }, glm::vec2{ 0.0f, 0.0f });
+	}
+
+	void Textura::Recargar(const std::shared_ptr<Imagen>& imagen)
+	{
+		glm::vec2 dim = { imagen->GetAncho(), imagen->GetAlto() };
+		glTextureSubImage2D(m_Objeto, 0, 0, 0, (GLint)dim.x, (GLint)dim.y, ObtenerFormato(imagen->GetCanal()), GL_UNSIGNED_BYTE, imagen->GetBuffer());
+	}
+
 	void Textura::Bind(uint32_t espacio)
 	{
 		glBindTextureUnit(espacio, m_Objeto);

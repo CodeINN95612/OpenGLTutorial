@@ -106,6 +106,19 @@ namespace GL
 
 		Dibujar(m_CuadVertexArray.get());
 	}
+
+	void Renderizador::MostarTextura(const char* textura)
+	{
+		std::shared_ptr<Shader>& shader = AdministradorRecursos::ObtenerShader("Basico");
+		shader->UniformMat4("uMVP", glm::mat4{1.0f});
+		shader->Uniform4f("uColor", {1.0f, 1.0f, 1.0f, 1.0f});
+		shader->UniformTextura("uTextura", 0);
+
+		std::shared_ptr<Textura>& tex = AdministradorRecursos::ObtenerTextura(textura);
+
+		tex->Bind(0);
+		Dibujar(m_CuadVertexArray.get());
+	}
 }
 
 void ManejadorDeErrores(GLenum src, GLenum type, GLuint id, GLenum severity, GLsizei length, GLchar const* msg, void const* user_param)

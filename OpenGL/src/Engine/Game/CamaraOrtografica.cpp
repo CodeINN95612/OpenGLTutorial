@@ -5,6 +5,14 @@
 
 namespace GL
 {
+	static float map(float value,
+		float istart,
+		float istop,
+		float ostart,
+		float ostop) {
+		return ostart + (ostop - ostart) * ((value - istart) / (istop - istart));
+	}
+
 	CamaraOrtografica::CamaraOrtografica(float ancho, float alto, glm::vec3 posicion) :
 		m_Ancho(ancho), m_Alto(alto), m_Posicion(posicion), m_Arriba(0.0f, 1.0f, 0.0f), m_Offset(0.0f, 0.0f, 1.0f)
 	{ 
@@ -36,6 +44,14 @@ namespace GL
 		ActualizarProyeccion();
 	}
 
+	glm::vec2 CamaraOrtografica::MapearCoordenadas(glm::vec2 coords)
+	{
+		glm::vec2 result;
+		result.x = map(coords.x, 0, m_Ancho, -(m_Ancho / 2.0f), (m_Ancho / 2.0f));
+		result.y = map(coords.y, 0, m_Alto, (m_Alto / 2.0f), -(m_Alto / 2.0f));
+		return result;
+	}
+
 	void CamaraOrtografica::ActualizarVista()
 	{
 		m_Centro = m_Posicion + glm::vec3{ 0.0f, 0.0f, 1.0f };
@@ -44,7 +60,7 @@ namespace GL
 
 	void CamaraOrtografica::ActualizarProyeccion()
 	{
-		m_MatrizProyeccion = glm::ortho((m_Ancho / 2.0f), -(m_Ancho / 2.0f), -(m_Alto / 2.0f), (m_Alto / 2.0f), -1.0f, 100.0f);
+		m_MatrizProyeccion = glm::ortho((m_Ancho / 2.0f), -(m_Ancho / 2.0f), (m_Alto / 2.0f), -(m_Alto / 2.0f), -1.0f, 100.0f);
 	}
 
 	void CamaraOrtografica::ActualizarMatrices()

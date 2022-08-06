@@ -19,6 +19,9 @@ namespace GL
 
 		static std::shared_ptr<Textura> DesdeArchivo(const char* archivo, glm::vec2 pos = { 0.0f, 0.0f }, glm::vec2 dim = { 0.0f, 0.0f });
 		static std::shared_ptr<Textura> DesdeColor(uint32_t color);
+		static std::shared_ptr<Textura> DesdeImagen(const std::shared_ptr<Imagen>& imagen);
+
+		void Recargar(const std::shared_ptr<Imagen>& imagen);
 
 		void Bind(uint32_t espacio);
 

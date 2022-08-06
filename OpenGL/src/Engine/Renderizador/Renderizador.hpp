@@ -32,6 +32,8 @@ namespace GL
 		//Metodos
 		void Cuad(ComponenteTransform2D& transform, ComponenteSprite& sprite);
 
+		void MostarTextura(const char* textura);
+
 	private:
 		std::unique_ptr<VertexArray> m_CuadVertexArray{};
 

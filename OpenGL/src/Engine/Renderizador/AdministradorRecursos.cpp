@@ -41,4 +41,19 @@ namespace GL
 		GL_ASSERT(TieneTextura(nombre), "Administrador de recursos no tiene la textura");
 		return s_Texturas[nombre];
 	}
+
+	std::shared_ptr<Textura>& AdministradorRecursos::RecargarTextura(std::string nombre, std::shared_ptr<Imagen> imagen)
+	{
+		if (TieneTextura(nombre))
+		{
+			std::shared_ptr<Textura>& tex = s_Texturas[nombre];
+			tex->Recargar(imagen);
+			return tex;
+		}
+		else
+		{
+			CargarTextura(nombre, Textura::DesdeImagen(imagen));
+		}
+
+	}
 }

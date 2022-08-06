@@ -27,20 +27,16 @@ private:
 	std::unique_ptr<GL::Window> m_Window{};
 	ManejadorEventosJuego m_ManejadorDeEventos;
 
-	GL::AdministradorFPS m_AdministradorFps{ 60 };
+	GL::AdministradorFPS m_AdministradorFps{ 1000 };
 
 	std::unique_ptr<GL::Renderizador> m_Renderizador{};
 
-	GL::CamaraOrtografica m_Camara{ float(Ancho), float(Alto), {0.0f, 0.0f, -10.0f} };
+	//GL::CamaraOrtografica m_Camara{ float(Ancho), float(Alto), {0.0f, 0.0f, -10.0f} };
+	GL::CamaraOrtografica m_Camara{ 1, 1, {0.0f, 0.0f, -1.0f} };
 	glm::vec4 ColorLimpieza{ 0.2f, 0.2f, 0.2f, 1.0f};
 
 	std::vector<std::shared_ptr<GL::ObjetoJuego>> m_Objetos{};
-	std::shared_ptr<GL::ObjetoJuego> m_Jugador = GL::ObjetoJuego::Crear("Jugador1");
-	float velH = 15.0f;
-	float velV = 0.0f;
-	float g = 3.0f;
-	bool salto = false;
-	bool enSuelo = false;
+	uint32_t *ImageBuffer;
 
 	float m_FPS = 60.0f;
 

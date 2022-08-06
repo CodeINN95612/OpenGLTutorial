@@ -7,7 +7,7 @@ class Game;
 class ManejadorEventosJuego : public GL::IManejadorDeEventos
 {
 public:
-	ManejadorEventosJuego(Game& juego) : m_Juego(juego) {}
+	ManejadorEventosJuego(Game* juego) : m_Juego(juego) {}
 	virtual ~ManejadorEventosJuego() = default;
 
 	ManejadorEventosJuego(const ManejadorEventosJuego& other) = delete;
@@ -31,5 +31,5 @@ public:
 
 
 private:
-	Game& m_Juego;
+	Game* m_Juego;
 };
